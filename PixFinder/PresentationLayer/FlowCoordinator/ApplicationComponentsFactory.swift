@@ -23,7 +23,11 @@ extension ApplicationComponentsFactory: ApplicationFlowCoordinatorDependencyProv
 }
 
 extension ApplicationComponentsFactory: PhotoSearchFlowCoordinatorDependencyProvider {
+    
     func photoSearchController() -> UIViewController {
-        return PhotoSearchViewController()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        // TODO: Maybe design via the nne ViewController (VC) and it own .xib file to load a VC and avoid
+        // storyboard file in multiple VCs are being added and routing/navigating starts happening
+        return storyboard.instantiateViewController(withIdentifier: "PhotoSearch")
     }
 }
