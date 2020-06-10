@@ -12,7 +12,7 @@ import UIKit.UIImage
 
 protocol PhotosUseCaseType {
 
-    /// Runs photos search with a query string
+    /// Triggers a photos search with a query string
     func searchPhotos(with query: String) -> AnyPublisher<Result<[Photo], Error>, Never>
 }
 

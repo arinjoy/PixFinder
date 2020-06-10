@@ -17,11 +17,11 @@ struct Photo {
     let mediumSizeUrl: String
     let largeSizeUrl: String
 
-    let views: Int64
-    let downloads: Int64
-    let favourites: Int64
-    let likes: Int64
-    let comments: Int64
+    let totalViews: Int
+    let totalDownloads: Int
+    let favouritesCount: Int
+    let likesCount: Int
+    let commentsCount: Int
 
     let postedByUserName: String
     let postedByUserImageUrl: String
@@ -46,11 +46,11 @@ extension Photo: Decodable {
         case previewUrl = "previewURL"
         case mediumSizeUrl = "webformatURL"
         case largeSizeUrl = "largeImageURL"
-        case views
-        case downloads
-        case favourites = "favorites"
-        case likes
-        case comments
+        case totalViews = "views"
+        case totalDownloads = "downloads"
+        case favouritesCount = "favorites"
+        case likesCount = "likes"
+        case commentsCount = "comments"
         case postedByUserName = "user"
         case postedByUserImageUrl = "userImageURL"
     }

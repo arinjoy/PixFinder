@@ -10,36 +10,36 @@ import Foundation
 import UIKit.UIImage
 import Combine
 
-typealias ImageUrls = (preview: URL, mediumSize: URL, largeSize: URL)
+typealias ImageURLTuple = (preview: URL, mediumSize: URL, largeSize: URL)
 typealias PostedByUser = (name: String, avatarUrl: URL)
 
 struct PhotoViewModel {
 
     let id: Int
     let tags: String
-    let pageUrl: String
+    let pageUrl: URL
 
-    let imageUrls: ImageUrls
+    let imageUrls: ImageURLTuple
     let mainImage: AnyPublisher<UIImage?, Never>
 
-    let totalViews: Int64
-    let totalDownloads: Int64
-    let favouritesCount: Int64
-    let likesCount: Int64
-    let commentsCount: Int64
+    let views: String
+    let downloads: String
+    let favourites: String
+    let likes: String
+    let comments: String
 
     let postedByUser: PostedByUser
 
     init(id: Int,
          tags: String,
-         pageUrl: String,
-         imageUrls: ImageUrls,
+         pageUrl: URL,
+         imageUrls: ImageURLTuple,
          mainImage: AnyPublisher<UIImage?, Never>,
-         totalViews: Int64,
-         totalDownloads: Int64,
-         favouritesCount: Int64,
-         likesCount: Int64,
-         commentsCount: Int64,
+         views: String,
+         downloads: String,
+         favourites: String,
+         likes: String,
+         comments: String,
          postedByUser: PostedByUser
     ) {
         self.id = id
@@ -49,17 +49,19 @@ struct PhotoViewModel {
         self.imageUrls = imageUrls
         self.mainImage = mainImage
 
-        self.totalViews = totalViews
-        self.totalDownloads = totalDownloads
-        self.favouritesCount = favouritesCount
-        self.likesCount = likesCount
-        self.commentsCount = commentsCount
+        self.views = views
+        self.downloads = downloads
+        self.favourites = favourites
+        self.likes = likes
+        self.comments = comments
 
         self.postedByUser = postedByUser
     }
 }
 
+/// Used for `NSDiffableDataSource`
 extension PhotoViewModel: Hashable {
+
     static func == (lhs: PhotoViewModel, rhs: PhotoViewModel) -> Bool {
         return lhs.id == rhs.id
     }

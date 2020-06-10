@@ -68,4 +68,16 @@ final class PhotoSearchViewModel: PhotoSearchViewModelType {
         return Publishers.Merge(idle, photos)
             .eraseToAnyPublisher()
     }
+
+    private func viewModels(from photos: [Photo]) -> [PhotoViewModel] {
+        return photos.map { photo in
+            return PhotoViewModelTransformer.viewModel(
+                from: photo,
+                imageLoader: { url in
+                    // TODO: load the image from the url via `useCase`
+                    // which should return `AnyPublisher<UIImage?, Never>`
+                }
+            )
+        }
+    }
 }
