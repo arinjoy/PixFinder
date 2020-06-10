@@ -38,8 +38,10 @@ final class PhotoSearchViewModel: PhotoSearchViewModelType {
 
         let searchInput = input.search
             .debounce(for: .milliseconds(300), scheduler: Scheduler.main)
+            .removeDuplicates()
 
-        let photos = searchInput
+        let photosResultState = searchInput
+            .filter { !$0.isEmpty }
             .flatMapLatest { [unowned self] query in
                 self.useCase.searchPhotos(with: query)
             }
@@ -57,15 +59,27 @@ final class PhotoSearchViewModel: PhotoSearchViewModelType {
 
         let initialState: PhotoSearchViewModelOutput = .just(.idle)
 
-        let emptySearchString: PhotoSearchViewModelOutput =
-            searchInput
+        let emptySearchString: PhotoSearchViewModelOutput = searchInput
+            .filter { $0.isEmpty }
             .map { _ in .idle }
             .eraseToAnyPublisher()
 
-        let idle: PhotoSearchViewModelOutput = Publishers.Merge(initialState, emptySearchString)
+        let idleState: PhotoSearchViewModelOutput = Publishers.Merge(initialState, emptySearchString)
             .eraseToAnyPublisher()
 
-        return Publishers.Merge(idle, photos)
+        let loadingState: PhotoSearchViewModelOutput = searchInput
+            .filter({ !$0.isEmpty })
+            .throttle(for: .milliseconds(1000), scheduler: Scheduler.main, latest: true)
+            .removeDuplicates()
+            .map { _ in .loading }
+            .eraseToAnyPublisher()
+
+        let searchState = Publishers.Merge(loadingState, photosResultState)
+            .removeDuplicates()
+            .eraseToAnyPublisher()
+
+        return Publishers.Merge(idleState, searchState)
+            .removeDuplicates()
             .eraseToAnyPublisher()
     }
 
