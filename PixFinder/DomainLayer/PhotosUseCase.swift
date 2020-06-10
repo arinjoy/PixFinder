@@ -33,8 +33,8 @@ final class PhotosUseCase: PhotosUseCaseType {
             case .failure(let error): return .failure(error)
             }
         })
-        .subscribe(on: DispatchQueue.global(qos: .userInteractive))
-        .receive(on: RunLoop.main)
+        .subscribe(on: Scheduler.background)
+        .receive(on: Scheduler.main)
         .eraseToAnyPublisher()
     }
 }
