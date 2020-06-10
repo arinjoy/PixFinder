@@ -12,10 +12,7 @@ import Combine
 
 struct PhotoViewModelTransformer {
 
-    static func viewModel(
-        from photo: Photo,
-        imageLoader: (URL) -> AnyPublisher<UIImage?, Never>
-    ) -> PhotoViewModel? {
+    static func viewModel(from photo: Photo) -> PhotoViewModel? {
 
         // Note: Here comes the raw data model to presentation data model conversion logic via `Transformers`
         
@@ -34,7 +31,6 @@ struct PhotoViewModelTransformer {
                               imageUrls: ImageURLTuple(preview: previewUrl,
                                                        mediumSize: mediumSizeUrl,
                                                        largeSize: largeSizeUrl),
-                              mainImage: imageLoader(mediumSizeUrl),
                               views: photo.totalViews.roundedStringified,
                               downloads: photo.totalDownloads.roundedStringified,
                               favourites: photo.favouritesCount.roundedStringified,

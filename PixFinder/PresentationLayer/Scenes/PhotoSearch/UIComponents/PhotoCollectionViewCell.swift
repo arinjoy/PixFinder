@@ -30,12 +30,12 @@ final class PhotoCollectionViewCell: UICollectionViewCell, NibProvidable, Reusab
 
     // MARK: - Configuration
 
-    func configure(with viewModel: Photo) {
-        userNameLabel.text = viewModel.postedByUserName
+    func configure(with viewModel: PhotoViewModel) {
+        userNameLabel.text = viewModel.postedByUser.name
         tagsLabel.text = viewModel.tags
 
         // TODO; bind this the image view
-        print(viewModel.mediumSizeUrl)
+        print(viewModel.imageUrls.mediumSize)
 
     }
 }

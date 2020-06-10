@@ -9,8 +9,6 @@
 import Foundation
 import Combine
 
-
-
 protocol PhotoSearchViewModelType {
     func transform(input: PhotoSearchViewModelInput) -> PhotoSearchViewModelOutput
 }
@@ -23,8 +21,19 @@ struct PhotoSearchViewModelInput {
     /// Triggered when the search query is updated
     let search: AnyPublisher<String, Never>
 
+    // TODO: Not used yet for selection and detail screen navigation, so keeping it optional for now
     /// Called when the user selected an item from the list
-    let selection: AnyPublisher<Int, Never>
+    let selection: AnyPublisher<Int, Never>?
+
+    init(
+        appear: AnyPublisher<Void, Never>,
+        search: AnyPublisher<String, Never>,
+        selection: AnyPublisher<Int, Never>? = nil // TODO: to be used in next feature
+    ) {
+        self.appear = appear
+        self.search = search
+        self.selection = selection
+    }
 }
 
 typealias PhotoSearchViewModelOutput = AnyPublisher<PhotoSearchState, Never>
@@ -43,7 +52,7 @@ extension PhotoSearchState: Equatable {
         switch (lhs, rhs) {
         case (.idle, .idle): return true
         case (.loading, .loading): return true
-        case (.success(let lhsPhotos), .success(let rhsPhotos)): return lhsPhotos == lhsPhotos
+        case (.success(let lhsPhotos), .success(let rhsPhotos)): return lhsPhotos == rhsPhotos
         case (.noResults, .noResults): return true
         case (.failure, .failure): return true
         default: return false

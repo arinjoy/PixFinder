@@ -20,7 +20,7 @@ struct PhotoViewModel {
     let pageUrl: URL
 
     let imageUrls: ImageURLTuple
-    let mainImage: AnyPublisher<UIImage?, Never>
+    let mainImage: AnyPublisher<UIImage?, Never>?
 
     let views: String
     let downloads: String
@@ -34,7 +34,7 @@ struct PhotoViewModel {
          tags: String,
          pageUrl: URL,
          imageUrls: ImageURLTuple,
-         mainImage: AnyPublisher<UIImage?, Never>,
+         mainImage: AnyPublisher<UIImage?, Never>? = nil,
          views: String,
          downloads: String,
          favourites: String,

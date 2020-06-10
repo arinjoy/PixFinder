@@ -14,6 +14,7 @@ final class PhotoSearchViewModel: PhotoSearchViewModelType {
     // MARK: - Private Properties
     
     private let useCase: PhotosUseCaseType
+    
     private var cancellables: [AnyCancellable] = []
 
     init(useCase: PhotosUseCaseType) {
@@ -27,7 +28,8 @@ final class PhotoSearchViewModel: PhotoSearchViewModelType {
         cancellables.forEach { $0.cancel() }
         cancellables.removeAll()
 
-        input.selection
+        // TODO: for future feature fo detail page navigation
+        input.selection?
             .sink(receiveValue: { photoId in
                 // Note: Handle navigation of the detail screen of the photo (when this feature is developed in future)
                 // Potenially via `Router` or `Navigator` protocol abstraction for unit testing of routing logic
@@ -37,22 +39,20 @@ final class PhotoSearchViewModel: PhotoSearchViewModelType {
         let searchInput = input.search
             .debounce(for: .milliseconds(300), scheduler: Scheduler.main)
 
-
         let photos = searchInput
             .flatMapLatest { [unowned self] query in
                 self.useCase.searchPhotos(with: query)
             }
-            .map({ result -> PhotoSearchState in
+            .map { result -> PhotoSearchState in
                 switch result {
                 case .success([]):
                     return .noResults
                 case .success(let photos):
-                    // TODO: pass mapped photos as `PhotoViewModel` array as success
-                    return .success([])
+                    return .success(self.viewModels(from: photos))
                 case .failure(let error):
                     return .failure(error)
                 }
-            })
+            }
             .eraseToAnyPublisher()
 
         let initialState: PhotoSearchViewModelOutput = .just(.idle)
@@ -71,13 +71,8 @@ final class PhotoSearchViewModel: PhotoSearchViewModelType {
 
     private func viewModels(from photos: [Photo]) -> [PhotoViewModel] {
         return photos.map { photo in
-            return PhotoViewModelTransformer.viewModel(
-                from: photo,
-                imageLoader: { url in
-                    // TODO: load the image from the url via `useCase`
-                    // which should return `AnyPublisher<UIImage?, Never>`
-                }
-            )
+            return PhotoViewModelTransformer.viewModel(from: photo)
         }
+        .compactMap { $0 }
     }
 }

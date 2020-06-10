@@ -26,17 +26,21 @@ final class PhotoSearchViewController: UIViewController {
 
     // MARK:- Private Properties
 
-    private var cancellables: [AnyCancellable] = []
-
+    /// Will be injected upon storyboard based intialisation, that's why not as `private let`
+    /// TODO: Move to `one XIB` based `one VC` loading so that can be passed on `init(withViewModel:)` style
+    var viewModel: PhotoSearchViewModelType!
+    
     private let search = PassthroughSubject<String, Never>()
     private let appear = PassthroughSubject<Void, Never>()
+
+    private var cancellables: [AnyCancellable] = []
 
     // TODO: use for testing network layer works
     private let useCase: PhotosUseCaseType = PhotosUseCase(
         networkService: ServicesProvider.defaultProvider().network
     )
 
-    private lazy var dataSource: UICollectionViewDiffableDataSource<Section, Photo> = {
+    private lazy var dataSource: UICollectionViewDiffableDataSource<Section, PhotoViewModel> = {
         return makeDataSource()
     }()
 
@@ -46,19 +50,7 @@ final class PhotoSearchViewController: UIViewController {
         super.viewDidLoad()
 
         configureUI()
-
-        // TODO: Replace this below via ViewModel data binding to Collection View
-
-        useCase.searchPhotos(with: "cat")
-        .sink { [weak self] result in
-            switch result {
-            case .success(let photos):
-                self?.loadingView.isHidden = true
-                self?.update(with: photos)
-            case .failure(let error):
-                print(error)
-            }
-        }.store(in: &cancellables)
+        bind(to: viewModel)
     }
 
     // MARK: - Private Helpers
@@ -68,9 +60,53 @@ final class PhotoSearchViewController: UIViewController {
         title = NSLocalizedString("Photos", comment: "top photos")
 
         collectionView.registerNib(cellClass: PhotoCollectionViewCell.self)
+        collectionView.collectionViewLayout = customPhotoGridLayout()
         collectionView.dataSource = dataSource
 
-        collectionView.collectionViewLayout = UICollectionViewCompositionalLayout(sectionProvider: { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
+        navigationItem.searchController = self.searchController
+        searchController.isActive = true
+    }
+
+    private func bind(to viewModel: PhotoSearchViewModelType) {
+
+        cancellables.forEach { $0.cancel() }
+        cancellables.removeAll()
+
+        let input = PhotoSearchViewModelInput(appear: appear.eraseToAnyPublisher(),
+                                              search: search.eraseToAnyPublisher())
+
+        let output = viewModel.transform(input: input)
+
+        output
+            .receive(on: Scheduler.main)
+            .sink(receiveValue: { [weak self] state in
+                self?.render(state)
+            }).store(in: &cancellables)
+    }
+
+    private func render(_ state: PhotoSearchState) {
+        switch state {
+        case .idle:
+            loadingView.isHidden = true
+            update(with: [], animate: true)
+        case .loading:
+            loadingView.isHidden = false
+            update(with: [], animate: true)
+        case .noResults:
+            loadingView.isHidden = true
+            update(with: [], animate: true)
+        case .failure:
+            loadingView.isHidden = true
+            update(with: [], animate: true)
+        case .success(let photos):
+            loadingView.isHidden = true
+            update(with: photos, animate: true)
+        }
+    }
+
+    private func customPhotoGridLayout() -> UICollectionViewLayout {
+        // TODO: improve it or customise as much as needed based on `layoutEnvironment.traitCollection`
+        return UICollectionViewCompositionalLayout(sectionProvider: { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
           let isPhone = layoutEnvironment.traitCollection.userInterfaceIdiom == UIUserInterfaceIdiom.phone
           let size = NSCollectionLayoutSize(
             widthDimension: NSCollectionLayoutDimension.fractionalWidth(1),
@@ -84,10 +120,6 @@ final class PhotoSearchViewController: UIViewController {
           section.interGroupSpacing = 10
           return section
         })
-
-        navigationItem.searchController = self.searchController
-        searchController.isActive = true
-
     }
 }
 
@@ -102,13 +134,16 @@ extension PhotoSearchViewController: UISearchBarDelegate {
     }
 }
 
+
+// MARK: - Diffable DataSource & updates
+
 extension PhotoSearchViewController {
 
     enum Section: CaseIterable {
         case photos
     }
 
-    func makeDataSource() -> UICollectionViewDiffableDataSource<Section, Photo> {
+    func makeDataSource() -> UICollectionViewDiffableDataSource<Section, PhotoViewModel> {
         return UICollectionViewDiffableDataSource(
             collectionView: collectionView,
             cellProvider: { collectionView, indexPath, photoViewModel in
@@ -120,8 +155,8 @@ extension PhotoSearchViewController {
         )
     }
 
-    func update(with photos: [Photo], animate: Bool = true) {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Photo>()
+    func update(with photos: [PhotoViewModel], animate: Bool = true) {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, PhotoViewModel>()
         snapshot.appendSections(Section.allCases)
         snapshot.appendItems(photos, toSection: .photos)
         self.dataSource.apply(snapshot, animatingDifferences: animate)
