@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  PhotoSearchViewController.swift
 //  PixFinder
 //
 //  Created by Arinjoy Biswas on 10/6/20.
@@ -8,13 +8,14 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class PhotoSearchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        view.backgroundColor = UIColor.yellow
         // Do any additional setup after loading the view.
     }
-
 
 }
 
