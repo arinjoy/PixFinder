@@ -6,7 +6,7 @@
 	<integer>10</integer>
 	<key>logs</key>
 	<dict>
-		<key>021C07FF-3EC2-422E-AF72-F9FD420CDB11</key>
+		<key>1A544D00-91C0-40BA-B593-A5AE3774E7F4</key>
 		<dict>
 			<key>className</key>
 			<string>IDEActivityLogSection</string>
@@ -15,13 +15,13 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>021C07FF-3EC2-422E-AF72-F9FD420CDB11.xcactivitylog</string>
+			<string>1A544D00-91C0-40BA-B593-A5AE3774E7F4.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
 			<dict>
 				<key>highLevelStatus</key>
-				<string>S</string>
+				<string>W</string>
 			</dict>
 			<key>schemeIdentifier-containerName</key>
 			<string>PixFinder project</string>
@@ -32,15 +32,15 @@
 			<key>signature</key>
 			<string>Build PixFinder</string>
 			<key>timeStartedRecording</key>
-			<real>613447598.76719701</real>
+			<real>613564009.830616</real>
 			<key>timeStoppedRecording</key>
-			<real>613447602.13983095</real>
+			<real>613564010.87610102</real>
 			<key>title</key>
 			<string>Build PixFinder</string>
 			<key>uniqueIdentifier</key>
-			<string>021C07FF-3EC2-422E-AF72-F9FD420CDB11</string>
+			<string>1A544D00-91C0-40BA-B593-A5AE3774E7F4</string>
 		</dict>
-		<key>14A5FB86-2AB8-4A5B-A17E-5E5ED3B7F4BC</key>
+		<key>1B81DBC3-EB3D-4F8D-B0F2-4EE078C29FCC</key>
 		<dict>
 			<key>className</key>
 			<string>IDEActivityLogSection</string>
@@ -49,13 +49,13 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>14A5FB86-2AB8-4A5B-A17E-5E5ED3B7F4BC.xcactivitylog</string>
+			<string>1B81DBC3-EB3D-4F8D-B0F2-4EE078C29FCC.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
 			<dict>
 				<key>highLevelStatus</key>
-				<string>E</string>
+				<string>W</string>
 			</dict>
 			<key>schemeIdentifier-containerName</key>
 			<string>PixFinder project</string>
@@ -66,15 +66,15 @@
 			<key>signature</key>
 			<string>Build PixFinder</string>
 			<key>timeStartedRecording</key>
-			<real>613447435.55868304</real>
+			<real>613571674.81529498</real>
 			<key>timeStoppedRecording</key>
-			<real>613447436.14955795</real>
+			<real>613571676.68861699</real>
 			<key>title</key>
 			<string>Build PixFinder</string>
 			<key>uniqueIdentifier</key>
-			<string>14A5FB86-2AB8-4A5B-A17E-5E5ED3B7F4BC</string>
+			<string>1B81DBC3-EB3D-4F8D-B0F2-4EE078C29FCC</string>
 		</dict>
-		<key>6D45C87B-D5E0-4A53-B4FD-F52A82097055</key>
+		<key>1CC3026E-D7D8-482C-8D35-00A91A9BAFA7</key>
 		<dict>
 			<key>className</key>
 			<string>IDEActivityLogSection</string>
@@ -83,13 +83,13 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>6D45C87B-D5E0-4A53-B4FD-F52A82097055.xcactivitylog</string>
+			<string>1CC3026E-D7D8-482C-8D35-00A91A9BAFA7.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
 			<dict>
 				<key>highLevelStatus</key>
-				<string>S</string>
+				<string>W</string>
 			</dict>
 			<key>schemeIdentifier-containerName</key>
 			<string>PixFinder project</string>
@@ -100,15 +100,15 @@
 			<key>signature</key>
 			<string>Build PixFinder</string>
 			<key>timeStartedRecording</key>
-			<real>613447801.74256003</real>
+			<real>613571987.36994696</real>
 			<key>timeStoppedRecording</key>
-			<real>613447803.381441</real>
+			<real>613571988.91371405</real>
 			<key>title</key>
 			<string>Build PixFinder</string>
 			<key>uniqueIdentifier</key>
-			<string>6D45C87B-D5E0-4A53-B4FD-F52A82097055</string>
+			<string>1CC3026E-D7D8-482C-8D35-00A91A9BAFA7</string>
 		</dict>
-		<key>9B33F0E6-94ED-4B61-98FD-3D969DD5FD28</key>
+		<key>45720C8F-9337-4E89-82FA-8C0BBA5199E0</key>
 		<dict>
 			<key>className</key>
 			<string>IDEActivityLogSection</string>
@@ -117,13 +117,13 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>9B33F0E6-94ED-4B61-98FD-3D969DD5FD28.xcactivitylog</string>
+			<string>45720C8F-9337-4E89-82FA-8C0BBA5199E0.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
 			<dict>
 				<key>highLevelStatus</key>
-				<string>S</string>
+				<string>W</string>
 			</dict>
 			<key>schemeIdentifier-containerName</key>
 			<string>PixFinder project</string>
@@ -134,15 +134,15 @@
 			<key>signature</key>
 			<string>Build PixFinder</string>
 			<key>timeStartedRecording</key>
-			<real>613447890.50226402</real>
+			<real>613572695.50095296</real>
 			<key>timeStoppedRecording</key>
-			<real>613447891.52421796</real>
+			<real>613572697.23255396</real>
 			<key>title</key>
 			<string>Build PixFinder</string>
 			<key>uniqueIdentifier</key>
-			<string>9B33F0E6-94ED-4B61-98FD-3D969DD5FD28</string>
+			<string>45720C8F-9337-4E89-82FA-8C0BBA5199E0</string>
 		</dict>
-		<key>A89E2D88-CCB5-475C-A3EE-5BF6F7B5D3F7</key>
+		<key>4B1601AA-E7CD-4A5C-9C2F-BEB15730C7FE</key>
 		<dict>
 			<key>className</key>
 			<string>IDEActivityLogSection</string>
@@ -151,13 +151,13 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>A89E2D88-CCB5-475C-A3EE-5BF6F7B5D3F7.xcactivitylog</string>
+			<string>4B1601AA-E7CD-4A5C-9C2F-BEB15730C7FE.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
 			<dict>
 				<key>highLevelStatus</key>
-				<string>E</string>
+				<string>W</string>
 			</dict>
 			<key>schemeIdentifier-containerName</key>
 			<string>PixFinder project</string>
@@ -168,15 +168,15 @@
 			<key>signature</key>
 			<string>Build PixFinder</string>
 			<key>timeStartedRecording</key>
-			<real>613447255.19993806</real>
+			<real>613564523.23994505</real>
 			<key>timeStoppedRecording</key>
-			<real>613447256.04036796</real>
+			<real>613564524.04402804</real>
 			<key>title</key>
 			<string>Build PixFinder</string>
 			<key>uniqueIdentifier</key>
-			<string>A89E2D88-CCB5-475C-A3EE-5BF6F7B5D3F7</string>
+			<string>4B1601AA-E7CD-4A5C-9C2F-BEB15730C7FE</string>
 		</dict>
-		<key>B2604A15-3674-41A6-AA51-AEB1BFECA536</key>
+		<key>682BC4A5-CE77-4082-8B55-4DC031E026C1</key>
 		<dict>
 			<key>className</key>
 			<string>IDEActivityLogSection</string>
@@ -185,13 +185,13 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>B2604A15-3674-41A6-AA51-AEB1BFECA536.xcactivitylog</string>
+			<string>682BC4A5-CE77-4082-8B55-4DC031E026C1.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
 			<dict>
 				<key>highLevelStatus</key>
-				<string>S</string>
+				<string>W</string>
 			</dict>
 			<key>schemeIdentifier-containerName</key>
 			<string>PixFinder project</string>
@@ -200,17 +200,17 @@
 			<key>schemeIdentifier-sharedScheme</key>
 			<integer>1</integer>
 			<key>signature</key>
-			<string>Clean PixFinder</string>
+			<string>Build PixFinder</string>
 			<key>timeStartedRecording</key>
-			<real>613447246.80594099</real>
+			<real>613572579.85813999</real>
 			<key>timeStoppedRecording</key>
-			<real>613447246.871104</real>
+			<real>613572580.256827</real>
 			<key>title</key>
-			<string>Clean PixFinder</string>
+			<string>Build PixFinder</string>
 			<key>uniqueIdentifier</key>
-			<string>B2604A15-3674-41A6-AA51-AEB1BFECA536</string>
+			<string>682BC4A5-CE77-4082-8B55-4DC031E026C1</string>
 		</dict>
-		<key>BC93C71B-DECB-4165-80AE-BA9EC0B070A3</key>
+		<key>6CBD64E8-068A-4989-9AC9-1F821058E4F7</key>
 		<dict>
 			<key>className</key>
 			<string>IDEActivityLogSection</string>
@@ -219,13 +219,13 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>BC93C71B-DECB-4165-80AE-BA9EC0B070A3.xcactivitylog</string>
+			<string>6CBD64E8-068A-4989-9AC9-1F821058E4F7.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
 			<dict>
 				<key>highLevelStatus</key>
-				<string>S</string>
+				<string>W</string>
 			</dict>
 			<key>schemeIdentifier-containerName</key>
 			<string>PixFinder project</string>
@@ -236,13 +236,115 @@
 			<key>signature</key>
 			<string>Build PixFinder</string>
 			<key>timeStartedRecording</key>
-			<real>613447850.09300399</real>
+			<real>613572131.13504899</real>
 			<key>timeStoppedRecording</key>
-			<real>613447851.70494604</real>
+			<real>613572132.64762795</real>
 			<key>title</key>
 			<string>Build PixFinder</string>
 			<key>uniqueIdentifier</key>
-			<string>BC93C71B-DECB-4165-80AE-BA9EC0B070A3</string>
+			<string>6CBD64E8-068A-4989-9AC9-1F821058E4F7</string>
+		</dict>
+		<key>99E05644-9AD2-4D7C-B34E-551CEE8B2AE0</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>99E05644-9AD2-4D7C-B34E-551CEE8B2AE0.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>PixFinder project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>PixFinder</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build PixFinder</string>
+			<key>timeStartedRecording</key>
+			<real>613572511.23920405</real>
+			<key>timeStoppedRecording</key>
+			<real>613572513.15616596</real>
+			<key>title</key>
+			<string>Build PixFinder</string>
+			<key>uniqueIdentifier</key>
+			<string>99E05644-9AD2-4D7C-B34E-551CEE8B2AE0</string>
+		</dict>
+		<key>A4416B99-09E5-4977-B5B5-A87062D70587</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>A4416B99-09E5-4977-B5B5-A87062D70587.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>PixFinder project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>PixFinder</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build PixFinder</string>
+			<key>timeStartedRecording</key>
+			<real>613571856.21964598</real>
+			<key>timeStoppedRecording</key>
+			<real>613571858.18034995</real>
+			<key>title</key>
+			<string>Build PixFinder</string>
+			<key>uniqueIdentifier</key>
+			<string>A4416B99-09E5-4977-B5B5-A87062D70587</string>
+		</dict>
+		<key>C101B8C3-8188-42FA-BADE-723D1687B2EE</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>C101B8C3-8188-42FA-BADE-723D1687B2EE.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>PixFinder project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>PixFinder</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build PixFinder</string>
+			<key>timeStartedRecording</key>
+			<real>613571583.33815098</real>
+			<key>timeStoppedRecording</key>
+			<real>613571586.23241997</real>
+			<key>title</key>
+			<string>Build PixFinder</string>
+			<key>uniqueIdentifier</key>
+			<string>C101B8C3-8188-42FA-BADE-723D1687B2EE</string>
 		</dict>
 	</dict>
 </dict>

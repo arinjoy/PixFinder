@@ -19,6 +19,7 @@ final class PhotoSearchViewController: UIViewController {
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.obscuresBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.tintColor = UIColor.black
         searchController.searchBar.delegate = self
         return searchController
@@ -58,14 +59,14 @@ final class PhotoSearchViewController: UIViewController {
 
     private func configureUI() {
         definesPresentationContext = true
-        title = NSLocalizedString("Photos", comment: "top photos")
+        title = NSLocalizedString("Pixabay photos", comment: "top photos")
 
         collectionView.registerNib(cellClass: PhotoCollectionViewCell.self)
         collectionView.collectionViewLayout = customPhotoGridLayout()
         collectionView.dataSource = dataSource
         collectionView.delegate = self
 
-        navigationItem.searchController = self.searchController
+        navigationItem.searchController = searchController
         searchController.isActive = true
     }
 

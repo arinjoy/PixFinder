@@ -6,7 +6,7 @@
 	<integer>10</integer>
 	<key>logs</key>
 	<dict>
-		<key>DBC46A20-4749-46DE-A6CD-03DA04CD4B58</key>
+		<key>C79CCC9B-39F2-4081-BD1D-778117E146DD</key>
 		<dict>
 			<key>className</key>
 			<string>IDEActivityLogMajorGroupSection</string>
@@ -15,24 +15,24 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.target.product-type.application</string>
 			<key>fileName</key>
-			<string>DBC46A20-4749-46DE-A6CD-03DA04CD4B58.xcactivitylog</string>
+			<string>C79CCC9B-39F2-4081-BD1D-778117E146DD.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
 			<dict>
 				<key>highLevelStatus</key>
-				<string>S</string>
+				<string>W</string>
 			</dict>
 			<key>signature</key>
 			<string>PixFinder-ecycwmcdyuuftocrirnozvjxrlra</string>
 			<key>timeStartedRecording</key>
-			<real>613447890.53667295</real>
+			<real>613572695.55734706</real>
 			<key>timeStoppedRecording</key>
-			<real>613447891.51639402</real>
+			<real>613572697.21548903</real>
 			<key>title</key>
 			<string>Build target PixFinder</string>
 			<key>uniqueIdentifier</key>
-			<string>DBC46A20-4749-46DE-A6CD-03DA04CD4B58</string>
+			<string>C79CCC9B-39F2-4081-BD1D-778117E146DD</string>
 		</dict>
 	</dict>
 	<key>preserveOldLogs</key>

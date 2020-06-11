@@ -10,42 +10,57 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCollectionViewCell" id="gTV-IL-0wX" customClass="PhotoCollectionViewCell" customModule="PixFinder" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="192" height="131"/>
+            <rect key="frame" x="0.0" y="0.0" width="196" height="202"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="192" height="131"/>
+                <rect key="frame" x="0.0" y="0.0" width="196" height="202"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gl4-3m-oYi">
-                        <rect key="frame" x="0.0" y="0.0" width="192" height="131"/>
+                        <rect key="frame" x="0.0" y="0.0" width="196" height="202"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Bmh-gz-ee4">
-                                <rect key="frame" x="0.0" y="0.0" width="192" height="131"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cute-cat" translatesAutoresizingMaskIntoConstraints="NO" id="sig-oh-mQG">
+                                <rect key="frame" x="0.0" y="0.0" width="196" height="202"/>
+                            </imageView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FsY-zE-zRD">
+                                <rect key="frame" x="0.0" y="144" width="196" height="58"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="bY2-Wz-ETM">
+                                    <rect key="frame" x="0.0" y="0.0" width="196" height="58"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="systemThinMaterialLight"/>
+                            </visualEffectView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="1Kk-Yk-hhv">
+                                <rect key="frame" x="16" y="152" width="164" height="34"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sig-oh-mQG">
-                                        <rect key="frame" x="0.0" y="0.0" width="192" height="74.5"/>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tw1-NA-Yoq" userLabel="Username Label">
-                                        <rect key="frame" x="0.0" y="90.5" width="192" height="0.0"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tw1-NA-Yoq" userLabel="Username Label">
+                                        <rect key="frame" x="0.0" y="0.0" width="164" height="20.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gT2-EN-BKe" userLabel="Tags Label">
-                                        <rect key="frame" x="0.0" y="106.5" width="192" height="24.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tags, tags, tags" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gT2-EN-BKe" userLabel="Tags Label">
+                                        <rect key="frame" x="0.0" y="20.5" width="164" height="13.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Bmh-gz-ee4" secondAttribute="trailing" id="MfP-52-LZQ"/>
-                            <constraint firstAttribute="bottom" secondItem="Bmh-gz-ee4" secondAttribute="bottom" id="Uv5-dV-6aP"/>
-                            <constraint firstItem="Bmh-gz-ee4" firstAttribute="leading" secondItem="Gl4-3m-oYi" secondAttribute="leading" id="gIz-Jq-SLd"/>
-                            <constraint firstItem="Bmh-gz-ee4" firstAttribute="top" secondItem="Gl4-3m-oYi" secondAttribute="top" id="oZw-q3-4hA"/>
+                            <constraint firstAttribute="bottom" secondItem="1Kk-Yk-hhv" secondAttribute="bottom" constant="16" id="E7D-oI-PZb"/>
+                            <constraint firstAttribute="bottom" secondItem="FsY-zE-zRD" secondAttribute="bottom" id="Eoc-Zj-nfU"/>
+                            <constraint firstAttribute="trailing" secondItem="FsY-zE-zRD" secondAttribute="trailing" id="F8k-8L-LU6"/>
+                            <constraint firstAttribute="trailing" secondItem="sig-oh-mQG" secondAttribute="trailing" id="Sif-UX-En5"/>
+                            <constraint firstItem="FsY-zE-zRD" firstAttribute="height" secondItem="1Kk-Yk-hhv" secondAttribute="height" constant="24" id="TRc-C6-eCv"/>
+                            <constraint firstAttribute="trailing" secondItem="1Kk-Yk-hhv" secondAttribute="trailing" constant="16" id="UaD-ps-Vc7"/>
+                            <constraint firstAttribute="bottom" secondItem="sig-oh-mQG" secondAttribute="bottom" id="YSF-st-M8L"/>
+                            <constraint firstItem="sig-oh-mQG" firstAttribute="leading" secondItem="Gl4-3m-oYi" secondAttribute="leading" id="g09-Ce-3Si"/>
+                            <constraint firstItem="FsY-zE-zRD" firstAttribute="leading" secondItem="Gl4-3m-oYi" secondAttribute="leading" id="jS5-E0-4Og"/>
+                            <constraint firstItem="1Kk-Yk-hhv" firstAttribute="leading" secondItem="Gl4-3m-oYi" secondAttribute="leading" constant="16" id="tq5-PR-yQZ"/>
+                            <constraint firstItem="sig-oh-mQG" firstAttribute="top" secondItem="Gl4-3m-oYi" secondAttribute="top" id="vPG-gL-VMx"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -58,14 +73,17 @@
                 <constraint firstAttribute="bottom" secondItem="Gl4-3m-oYi" secondAttribute="bottom" id="iT0-7R-OXu"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <size key="customSize" width="192" height="131"/>
+            <size key="customSize" width="196" height="202"/>
             <connections>
                 <outlet property="containerView" destination="Gl4-3m-oYi" id="YpP-EC-Xrj"/>
                 <outlet property="imageView" destination="sig-oh-mQG" id="bKi-YX-qa5"/>
                 <outlet property="tagsLabel" destination="gT2-EN-BKe" id="ojd-a2-oHB"/>
                 <outlet property="userNameLabel" destination="tw1-NA-Yoq" id="av8-J7-znX"/>
             </connections>
-            <point key="canvasLocation" x="234.78260869565219" y="180.46875"/>
+            <point key="canvasLocation" x="237.68115942028987" y="204.24107142857142"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="cute-cat" width="640" height="390"/>
+    </resources>
 </document>

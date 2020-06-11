@@ -59,6 +59,7 @@ struct PhotoViewModel {
     }
 }
 
+
 /// Used for `NSDiffableDataSource`
 extension PhotoViewModel: Hashable {
 
