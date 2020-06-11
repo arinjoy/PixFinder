@@ -29,10 +29,11 @@ final class PhotoSearchViewModel: PhotoSearchViewModelType {
         cancellables.removeAll()
 
         // TODO: for future feature fo detail page navigation
-        input.selection?
+        input.selection
             .sink(receiveValue: { photoId in
                 // Note: Handle navigation of the detail screen of the photo (when this feature is developed in future)
                 // Potenially via `Router` or `Navigator` protocol abstraction for unit testing of routing logic
+                print("Tapped photo:", photoId)
             })
             .store(in: &cancellables)
 

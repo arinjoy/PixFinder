@@ -21,14 +21,13 @@ struct PhotoSearchViewModelInput {
     /// Triggered when the search query is updated
     let search: AnyPublisher<String, Never>
 
-    // TODO: Not used yet for selection and detail screen navigation, so keeping it optional for now
     /// Called when the user selected an item from the list
-    let selection: AnyPublisher<Int, Never>?
+    let selection: AnyPublisher<Int, Never>
 
     init(
         appear: AnyPublisher<Void, Never>,
         search: AnyPublisher<String, Never>,
-        selection: AnyPublisher<Int, Never>? = nil // TODO: to be used in next feature
+        selection: AnyPublisher<Int, Never>
     ) {
         self.appear = appear
         self.search = search

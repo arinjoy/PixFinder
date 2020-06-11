@@ -32,6 +32,7 @@ final class PhotoSearchViewController: UIViewController {
     
     private let search = PassthroughSubject<String, Never>()
     private let appear = PassthroughSubject<Void, Never>()
+    private let selection = PassthroughSubject<Int, Never>()
 
     private var cancellables: [AnyCancellable] = []
 
@@ -62,6 +63,7 @@ final class PhotoSearchViewController: UIViewController {
         collectionView.registerNib(cellClass: PhotoCollectionViewCell.self)
         collectionView.collectionViewLayout = customPhotoGridLayout()
         collectionView.dataSource = dataSource
+        collectionView.delegate = self
 
         navigationItem.searchController = self.searchController
         searchController.isActive = true
@@ -73,7 +75,8 @@ final class PhotoSearchViewController: UIViewController {
         cancellables.removeAll()
 
         let input = PhotoSearchViewModelInput(appear: appear.eraseToAnyPublisher(),
-                                              search: search.eraseToAnyPublisher())
+                                              search: search.eraseToAnyPublisher(),
+                                              selection: selection.eraseToAnyPublisher())
 
         let output = viewModel.transform(input: input)
 
@@ -134,6 +137,19 @@ extension PhotoSearchViewController: UISearchBarDelegate {
     }
 }
 
+extension PhotoSearchViewController: UICollectionViewDelegate {
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let snapshot = dataSource.snapshot()
+        // Send reactive signal as selection made
+        selection.send(snapshot.itemIdentifiers[indexPath.row].id)
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        searchController.searchBar.resignFirstResponder()
+    }
+}
+
 
 // MARK: - Diffable DataSource & updates
 
@@ -155,7 +171,7 @@ extension PhotoSearchViewController {
         )
     }
 
-    func update(with photos: [PhotoViewModel], animate: Bool = true) {
+    func update(with photos: [PhotoViewModel], animate: Bool = false) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, PhotoViewModel>()
         snapshot.appendSections(Section.allCases)
         snapshot.appendItems(photos, toSection: .photos)
