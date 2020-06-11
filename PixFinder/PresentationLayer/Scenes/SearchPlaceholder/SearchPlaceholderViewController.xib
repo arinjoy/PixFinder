@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchPlaceholderViewController" customModule="PixFinder" customModuleProvider="target">
+            <connections>
+                <outlet property="descriptionLabel" destination="hnp-qq-Oky" id="T7g-KM-4Uf"/>
+                <outlet property="imageView" destination="sgk-nR-Usr" id="dDo-Cs-Xzx"/>
+                <outlet property="titleLabel" destination="n6x-lU-mYV" id="kDF-Uy-Uhf"/>
+                <outlet property="view" destination="BDS-vt-aBS" id="MeI-VB-YaK"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="BDS-vt-aBS">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="wx3-Im-10r">
+                    <rect key="frame" x="92" y="196.5" width="230" height="211.5"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search-icon" translatesAutoresizingMaskIntoConstraints="NO" id="sgk-nR-Usr">
+                            <rect key="frame" x="51" y="0.0" width="128" height="128"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="128" id="WXa-8e-e0B"/>
+                                <constraint firstAttribute="width" constant="128" id="d7i-Fk-v8k"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;&lt;No results&gt;&gt;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n6x-lU-mYV">
+                            <rect key="frame" x="46.5" y="148" width="137.5" height="24"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;&lt;Start searching for photos&gt;&gt;" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hnp-qq-Oky">
+                            <rect key="frame" x="0.0" y="192" width="230" height="19.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="wx3-Im-10r" firstAttribute="centerX" secondItem="ZLf-cA-8vO" secondAttribute="centerX" id="6rO-dR-dc8"/>
+                <constraint firstItem="wx3-Im-10r" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ZLf-cA-8vO" secondAttribute="leading" constant="8" id="VzF-HQ-vjA"/>
+                <constraint firstItem="ZLf-cA-8vO" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="wx3-Im-10r" secondAttribute="trailing" constant="8" id="rCX-yI-3JK"/>
+                <constraint firstItem="wx3-Im-10r" firstAttribute="centerY" secondItem="ZLf-cA-8vO" secondAttribute="centerY" multiplier="2/3" id="uRO-cW-J9B"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZLf-cA-8vO"/>
+            <point key="canvasLocation" x="34.5" y="111.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="search-icon" width="24" height="24"/>
+    </resources>
+</document>

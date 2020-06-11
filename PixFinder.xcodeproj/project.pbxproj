@@ -35,6 +35,10 @@
 		91EA4004249058A400AAA4B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91EA4003249058A400AAA4B2 /* Assets.xcassets */; };
 		91EA4007249058A400AAA4B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91EA4005249058A400AAA4B2 /* LaunchScreen.storyboard */; };
 		91EA4012249058A500AAA4B2 /* PixFinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91EA4011249058A500AAA4B2 /* PixFinderTests.swift */; };
+		91FECB5B249266FF000E2884 /* SearchPlaceholderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91FECB58249266FF000E2884 /* SearchPlaceholderViewController.xib */; };
+		91FECB5C249266FF000E2884 /* SearchPlaceholderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FECB59249266FF000E2884 /* SearchPlaceholderViewController.swift */; };
+		91FECB5D249266FF000E2884 /* SearchPlaceholderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FECB5A249266FF000E2884 /* SearchPlaceholderViewModel.swift */; };
+		91FECB5F249267C8000E2884 /* UIViewController+Child.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FECB5E249267C8000E2884 /* UIViewController+Child.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +84,10 @@
 		91EA400D249058A500AAA4B2 /* PixFinderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PixFinderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		91EA4011249058A500AAA4B2 /* PixFinderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixFinderTests.swift; sourceTree = "<group>"; };
 		91EA4013249058A500AAA4B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		91FECB58249266FF000E2884 /* SearchPlaceholderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchPlaceholderViewController.xib; sourceTree = "<group>"; };
+		91FECB59249266FF000E2884 /* SearchPlaceholderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPlaceholderViewController.swift; sourceTree = "<group>"; };
+		91FECB5A249266FF000E2884 /* SearchPlaceholderViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPlaceholderViewModel.swift; sourceTree = "<group>"; };
+		91FECB5E249267C8000E2884 /* UIViewController+Child.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Child.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +122,7 @@
 		9144B71F24906599009B01B8 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				91FECB5124926120000E2884 /* SearchPlaceholder */,
 				9144B72024906641009B01B8 /* PhotoSearch */,
 			);
 			path = Scenes;
@@ -215,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				9144B73F24907EEE009B01B8 /* UICollectionView+Common.swift */,
+				91FECB5E249267C8000E2884 /* UIViewController+Child.swift */,
 			);
 			path = "UI+Utils";
 			sourceTree = "<group>";
@@ -256,6 +266,16 @@
 				91EA4013249058A500AAA4B2 /* Info.plist */,
 			);
 			path = PixFinderTests;
+			sourceTree = "<group>";
+		};
+		91FECB5124926120000E2884 /* SearchPlaceholder */ = {
+			isa = PBXGroup;
+			children = (
+				91FECB59249266FF000E2884 /* SearchPlaceholderViewController.swift */,
+				91FECB58249266FF000E2884 /* SearchPlaceholderViewController.xib */,
+				91FECB5A249266FF000E2884 /* SearchPlaceholderViewModel.swift */,
+			);
+			path = SearchPlaceholder;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -339,6 +359,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91FECB5B249266FF000E2884 /* SearchPlaceholderViewController.xib in Resources */,
 				91EA4007249058A400AAA4B2 /* LaunchScreen.storyboard in Resources */,
 				9144B73E24907E92009B01B8 /* PhotoCollectionViewCell.xib in Resources */,
 				91EA4004249058A400AAA4B2 /* Assets.xcassets in Resources */,
@@ -373,13 +394,16 @@
 				915341CE249113DE0078AAAA /* PhotoViewModelTransformer.swift in Sources */,
 				9144B72A249068DE009B01B8 /* Resource.swift in Sources */,
 				915341CC24910ECD0078AAAA /* Scheduler.swift in Sources */,
+				91FECB5F249267C8000E2884 /* UIViewController+Child.swift in Sources */,
 				9144B73824906F62009B01B8 /* Resource+Photo.swift in Sources */,
 				9144B72E249069F8009B01B8 /* Publisher+Extensions.swift in Sources */,
 				9144B73424906BAC009B01B8 /* Photo.swift in Sources */,
+				91FECB5C249266FF000E2884 /* SearchPlaceholderViewController.swift in Sources */,
 				9144B72424906864009B01B8 /* ServicesProvider.swift in Sources */,
 				9144B71B249062E9009B01B8 /* PhotoSearchFlowCoordinator.swift in Sources */,
 				915341CA249109BF0078AAAA /* PhotoViewModel.swift in Sources */,
 				9144B7192490629B009B01B8 /* FlowCoordinator+DependencyProviders.swift in Sources */,
+				91FECB5D249266FF000E2884 /* SearchPlaceholderViewModel.swift in Sources */,
 				9144B71D249063FD009B01B8 /* ApplicationComponentsFactory.swift in Sources */,
 				9144B728249068AE009B01B8 /* NetworkService.swift in Sources */,
 				9144B71724906251009B01B8 /* ApplicationFlowCoordinator.swift in Sources */,

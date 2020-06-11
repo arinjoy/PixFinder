@@ -25,6 +25,10 @@ final class PhotoSearchViewController: UIViewController {
         return searchController
     }()
 
+    private lazy var searchPlaceholderViewController = {
+        return SearchPlaceholderViewController(nibName: nil, bundle: nil)
+    }()
+
     // MARK:- Private Properties
 
     /// Will be injected upon storyboard based intialisation, that's why not as `private let`
@@ -55,11 +59,17 @@ final class PhotoSearchViewController: UIViewController {
         bind(to: viewModel)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        appear.send(())
+    }
+
     // MARK: - Private Helpers
 
     private func configureUI() {
         definesPresentationContext = true
-        title = NSLocalizedString("Pixabay photos", comment: "top photos")
+        title = NSLocalizedString("Pixabay photos", comment: "Pixabay photos")
 
         collectionView.registerNib(cellClass: PhotoCollectionViewCell.self)
         collectionView.collectionViewLayout = customPhotoGridLayout()
@@ -68,6 +78,9 @@ final class PhotoSearchViewController: UIViewController {
 
         navigationItem.searchController = searchController
         searchController.isActive = true
+
+        add(searchPlaceholderViewController)
+        searchPlaceholderViewController.showStartSearch()
     }
 
     private func bind(to viewModel: PhotoSearchViewModelType) {
@@ -91,18 +104,26 @@ final class PhotoSearchViewController: UIViewController {
     private func render(_ state: PhotoSearchState) {
         switch state {
         case .idle:
+            searchPlaceholderViewController.view.isHidden = false
+            searchPlaceholderViewController.showStartSearch()
             loadingView.isHidden = true
             update(with: [], animate: true)
         case .loading:
+            searchPlaceholderViewController.view.isHidden = true
             loadingView.isHidden = false
             update(with: [], animate: true)
         case .noResults:
+            searchPlaceholderViewController.view.isHidden = false
+            searchPlaceholderViewController.showNoResults()
             loadingView.isHidden = true
             update(with: [], animate: true)
         case .failure:
+            searchPlaceholderViewController.view.isHidden = false
+            searchPlaceholderViewController.showDataLoadingError()
             loadingView.isHidden = true
             update(with: [], animate: true)
         case .success(let photos):
+            searchPlaceholderViewController.view.isHidden = true
             loadingView.isHidden = true
             update(with: photos, animate: true)
         }
@@ -129,6 +150,7 @@ final class PhotoSearchViewController: UIViewController {
 
 
 extension PhotoSearchViewController: UISearchBarDelegate {
+
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         search.send(searchText)
     }
