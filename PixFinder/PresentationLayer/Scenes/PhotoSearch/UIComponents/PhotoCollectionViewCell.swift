@@ -41,7 +41,7 @@ final class PhotoCollectionViewCell: UICollectionViewCell, NibProvidable, Reusab
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        applyStyle()
+        applyStyles()
     }
 
     // MARK: - Configuration
@@ -56,33 +56,33 @@ final class PhotoCollectionViewCell: UICollectionViewCell, NibProvidable, Reusab
         favouritesLabel.text = viewModel.favourites
         downloadsLabel.text = viewModel.downloads
 
-        // TODO; bind this the image view
-        print(viewModel.imageUrls.mediumSize)
-        print(viewModel.postedByUser.avatarUrl)
-
         cancellable = viewModel.mainImage
             .receive(on: RunLoop.main)
             .sink { [unowned self] image in
                 self.showImage(image: image)
             }
+
+        applyContainerShadowStyle()
     }
 
      func showImage(image: UIImage?) {
         cancelImageLoading()
-        UIView.transition(with: mainImageView,
-        duration: 0.3,
-        options: [.curveEaseOut, .transitionCrossDissolve],
-        animations: {
-            self.mainImageView.image = image
-        })
+
+        UIView.transition(
+            with: mainImageView,
+            duration: 0.3,
+            options: [.curveEaseOut, .transitionCrossDissolve],
+            animations: {
+                self.mainImageView.image = image
+            })
     }
 
     // MARK: - Private Helpers
 
-    private func applyStyle() {
-        self.backgroundColor = Theme.secondaryBackgroundColor
+    private func applyStyles() {
+        self.backgroundColor = .clear
         containerView.backgroundColor = Theme.secondaryBackgroundColor
-        mainImageView.backgroundColor = Theme.backgroundColor
+        mainImageView.backgroundColor = Theme.tertiaryBackgroundColor
 
         userAvatarImageView.image = UIImage(named: "user-avatar")
         likesIconView.image = UIImage(named: "speech-bubble")
@@ -108,6 +108,17 @@ final class PhotoCollectionViewCell: UICollectionViewCell, NibProvidable, Reusab
             view?.tintColor = Theme.primaryTextColor
             view?.contentMode = .scaleAspectFit
         }
+    }
+
+    private func applyContainerShadowStyle() {
+        Shadow(color: Theme.primaryTextColor,
+           opacity: 0.3,
+           blur: 4,
+           offset: CGSize(width: 0, height: 0))
+        .apply(toView: self)
+
+        containerView.layer.masksToBounds = true
+        containerView.layer.cornerRadius = 8.0
     }
 
     private func cancelImageLoading() {

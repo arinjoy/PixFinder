@@ -15,6 +15,7 @@ final class PhotoSearchViewController: UIViewController {
 
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var loadingView: UIView!
+    @IBOutlet private weak var loadingActivityIndicator: UIActivityIndicatorView!
 
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
@@ -41,6 +42,7 @@ final class PhotoSearchViewController: UIViewController {
 
     private var cancellables: [AnyCancellable] = []
 
+    // MARK: - Image loading operations related
     private var imageLoadingQueue = OperationQueue()
     private var imageLoadingOperations: [IndexPath: ImageLoadOperation] = [:]
     private var imageStore: [IndexPath: UIImage?] = [:]
@@ -55,6 +57,14 @@ final class PhotoSearchViewController: UIViewController {
         super.viewDidLoad()
 
         configureUI()
+        applyStyles()
+
+        // Inject the placeholder view at start to prompt for search
+        add(searchPlaceholderViewController)
+        searchPlaceholderViewController.showStartSearch()
+
+        // Reactive binding to view model to listen for search
+        // events & results showing activities
         bind(to: viewModel)
     }
 
@@ -69,9 +79,7 @@ final class PhotoSearchViewController: UIViewController {
     private func configureUI() {
         definesPresentationContext = true
         title = NSLocalizedString("Pixabay photos", comment: "Pixabay photos")
-
-        view.backgroundColor = Theme.secondaryBackgroundColor
-        collectionView.backgroundColor = Theme.secondaryBackgroundColor
+        applyStyles()
 
         collectionView.registerNib(cellClass: PhotoCollectionViewCell.self)
         collectionView.collectionViewLayout = customPhotoGridLayout()
@@ -81,8 +89,6 @@ final class PhotoSearchViewController: UIViewController {
         navigationItem.searchController = searchController
         searchController.isActive = true
 
-        add(searchPlaceholderViewController)
-        searchPlaceholderViewController.showStartSearch()
     }
 
     private func bind(to viewModel: PhotoSearchViewModelType) {
@@ -96,8 +102,7 @@ final class PhotoSearchViewController: UIViewController {
 
         let output = viewModel.transform(input: input)
 
-        output
-            .receive(on: Scheduler.main)
+        output.receive(on: Scheduler.main)
             .sink(receiveValue: { [weak self] state in
                 self?.render(state)
             }).store(in: &cancellables)
@@ -132,21 +137,37 @@ final class PhotoSearchViewController: UIViewController {
     }
 
     private func customPhotoGridLayout() -> UICollectionViewLayout {
+
         // TODO: improve it or customise as much as needed based on `layoutEnvironment.traitCollection`
+
+        /**
+         For all sorts of device class detection and custom size for the cells or number of rows or even randomize
+         rows/columns in large iPad devices
+
+         Courtesy from Apple: https://developer.apple.com/videos/play/wwdc2019/215/
+         */
+
         return UICollectionViewCompositionalLayout(sectionProvider: { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
           let isPhone = layoutEnvironment.traitCollection.userInterfaceIdiom == UIUserInterfaceIdiom.phone
           let size = NSCollectionLayoutSize(
             widthDimension: NSCollectionLayoutDimension.fractionalWidth(1),
-            heightDimension: NSCollectionLayoutDimension.absolute(isPhone ? 320 : 280)
+            heightDimension: NSCollectionLayoutDimension.absolute(isPhone ? 320 : 360)
           )
           let itemCount = isPhone ? 1 : 3
           let item = NSCollectionLayoutItem(layoutSize: size)
           let group = NSCollectionLayoutGroup.horizontal(layoutSize: size, subitem: item, count: itemCount)
           let section = NSCollectionLayoutSection(group: group)
           section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
-          section.interGroupSpacing = 10
+          section.interGroupSpacing = 16
           return section
         })
+    }
+
+    private func applyStyles() {
+        view.backgroundColor = Theme.secondaryBackgroundColor
+        collectionView.backgroundColor = Theme.secondaryBackgroundColor
+        loadingView.backgroundColor = Theme.secondaryBackgroundColor
+        loadingActivityIndicator.color = Theme.tintColor
     }
 }
 
@@ -192,7 +213,6 @@ extension PhotoSearchViewController: UICollectionViewDelegate {
     }
 }
 
-
 // MARK: - Diffable DataSource & updates
 
 extension PhotoSearchViewController {
@@ -221,7 +241,7 @@ extension PhotoSearchViewController {
         var snapshot = NSDiffableDataSourceSnapshot<Section, PhotoViewModel>()
         snapshot.appendSections(Section.allCases)
         snapshot.appendItems(photos, toSection: .photos)
-        self.dataSource.apply(snapshot, animatingDifferences: animate)
+        dataSource.apply(snapshot, animatingDifferences: animate)
     }
 }
 

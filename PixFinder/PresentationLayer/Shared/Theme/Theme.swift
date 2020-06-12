@@ -27,8 +27,10 @@ enum Theme {
     static let secondaryBackgroundColor = UIColor(light: Theme.lightTealGrayColor,
                                                   dark: Theme.darkOrangeGrayColor)
 
-    static let primaryTextColor = UIColor(light: .darkText,
-                                          dark: .lightText)
+    static let tertiaryBackgroundColor = Theme.tintColor.withAlphaComponent(0.2)
+
+    static let primaryTextColor = UIColor(light: UIColor.black.withAlphaComponent(0.75),
+                                          dark: UIColor.white.withAlphaComponent(0.85))
 }
 
 private extension UIColor {

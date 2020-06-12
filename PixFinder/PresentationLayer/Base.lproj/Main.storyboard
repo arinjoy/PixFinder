@@ -67,6 +67,7 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="MdH-sX-FaC" id="aZg-vx-8oO"/>
+                        <outlet property="loadingActivityIndicator" destination="RwZ-Nn-Opn" id="nhm-Pr-e9M"/>
                         <outlet property="loadingView" destination="gNz-ct-wF2" id="zzk-EZ-cI2"/>
                     </connections>
                 </viewController>

@@ -18,7 +18,7 @@ final class ImageLoadOperation: Operation {
     /// The image that is being downloaded. `nil` represents it's not loaded due to an error.
     var image: UIImage?
 
-    /// A closure that is executed when this operation ends and the downloaded image data is passed back.
+    /// A closure that is executed when this operation ends and the downloaded (or cached version) image data is passed back.
     /// `nil`value  represents that image has not been loaded due to some issue.
     var completionHandler: ((UIImage?) -> Void)?
 
@@ -47,14 +47,12 @@ final class ImageLoadOperation: Operation {
         guard !isCancelled else { return }
 
         cancellable = imageLoaderService.loadImage(from: imageWebUrl)
-        .subscribe(on: DispatchQueue.global(qos: .background))
-        .receive(on: RunLoop.main)
-        .sink { [weak self] image in
-            guard let self = self else { return }
-            self.image = image
-            self.completionHandler?(self.image)
-        }
+            .subscribe(on: DispatchQueue.global(qos: .background))
+            .receive(on: Scheduler.main)
+            .sink { [weak self] image in
+                guard let self = self else { return }
+                self.image = image
+                self.completionHandler?(self.image)
+            }
     }
 }
-
-
