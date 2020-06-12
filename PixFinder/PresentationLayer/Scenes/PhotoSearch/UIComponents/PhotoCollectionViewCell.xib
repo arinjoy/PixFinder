@@ -19,8 +19,9 @@
                     <view clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gl4-3m-oYi">
                         <rect key="frame" x="5" y="8" width="296" height="310"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cute-cat" translatesAutoresizingMaskIntoConstraints="NO" id="sig-oh-mQG">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sig-oh-mQG">
                                 <rect key="frame" x="0.0" y="0.0" width="296" height="310"/>
+                                <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FsY-zE-zRD">
                                 <rect key="frame" x="0.0" y="218.5" width="296" height="91.5"/>
@@ -190,9 +191,9 @@
                 <outlet property="downloadsLabel" destination="yhU-MC-moG" id="gcX-Y2-rQ6"/>
                 <outlet property="favouritesIconView" destination="3fe-jB-uYS" id="D1j-vJ-p0g"/>
                 <outlet property="favouritesLabel" destination="2Y1-cT-v62" id="jIu-KP-uC1"/>
-                <outlet property="imageView" destination="sig-oh-mQG" id="bKi-YX-qa5"/>
                 <outlet property="likesIconView" destination="Yf4-D6-Ss0" id="BM9-Cb-lCC"/>
                 <outlet property="likesLabel" destination="k3H-Cy-0I1" id="gO8-gh-CW8"/>
+                <outlet property="mainImageView" destination="sig-oh-mQG" id="bKi-YX-qa5"/>
                 <outlet property="tagsLabel" destination="gT2-EN-BKe" id="ojd-a2-oHB"/>
                 <outlet property="userAvatarImageView" destination="vhG-2k-Nua" id="AkL-sS-Kqu"/>
                 <outlet property="userNameLabel" destination="tw1-NA-Yoq" id="av8-J7-znX"/>
@@ -202,7 +203,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="cute-cat" width="640" height="390"/>
         <image name="download" width="90" height="107"/>
         <image name="heart-love" width="101" height="93"/>
         <image name="like-up" width="108" height="114"/>

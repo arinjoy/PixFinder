@@ -86,7 +86,11 @@ final class PhotoSearchViewModel: PhotoSearchViewModelType {
 
     private func viewModels(from photos: [Photo]) -> [PhotoViewModel] {
         return photos.map { photo in
-            return PhotoViewModelTransformer.viewModel(from: photo)
+            return PhotoViewModelTransformer.viewModel(
+                from: photo,
+                imageLoader: { [unowned self] url in
+                    self.useCase.loadImage(for: url)
+                })
         }
         .compactMap { $0 }
     }

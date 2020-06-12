@@ -13,7 +13,10 @@ final class ApplicationComponentsFactory {
     // TODO: Add use case & service providers here
 
     private lazy var useCase: PhotosUseCaseType = {
-        return PhotosUseCase(networkService: ServicesProvider.defaultProvider().network)
+        return PhotosUseCase(
+            networkService: ServicesProvider.defaultProvider().network,
+            imageLoaderService: ServicesProvider.defaultProvider().imageLoader
+        )
     }()
 
     private let servicesProvider: ServicesProvider

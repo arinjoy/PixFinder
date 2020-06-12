@@ -13,12 +13,17 @@ class ServicesProvider {
     /// The underlying network service to load HTTP network based data
     let network: NetworkServiceType
 
+    /// The underlying image service to load images from HTTP or from saved cache
+    let imageLoader: ImageLoaderServiceType
+
     static func defaultProvider() -> ServicesProvider {
         let network = NetworkService()
-        return ServicesProvider(network: network)
+        let imageLoader = ImageLoaderService()
+        return ServicesProvider(network: network, imageLoader: imageLoader)
     }
 
-    init(network: NetworkServiceType) {
+    init(network: NetworkServiceType, imageLoader: ImageLoaderServiceType) {
         self.network = network
+        self.imageLoader = imageLoader
     }
 }

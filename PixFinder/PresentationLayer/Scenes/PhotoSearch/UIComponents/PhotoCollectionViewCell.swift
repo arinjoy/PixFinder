@@ -15,7 +15,7 @@ final class PhotoCollectionViewCell: UICollectionViewCell, NibProvidable, Reusab
 
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var visualEffectView: UIVisualEffectView!
-    @IBOutlet private weak var imageView: UIImageView!
+    @IBOutlet private weak var mainImageView: UIImageView!
     @IBOutlet private weak var userNameLabel: UILabel!
     @IBOutlet private weak var userAvatarImageView: UIImageView!
     @IBOutlet private weak var tagsLabel: UILabel!
@@ -36,13 +36,53 @@ final class PhotoCollectionViewCell: UICollectionViewCell, NibProvidable, Reusab
 
     override func prepareForReuse() {
         super.prepareForReuse()
+        cancelImageLoading()
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        applyStyle()
+    }
 
+    // MARK: - Configuration
+
+    func configure(with viewModel: PhotoViewModel) {
+
+        userNameLabel.text = "By: " + viewModel.postedByUser.name
+        tagsLabel.text = "Tags: " + viewModel.tags
+
+        likesLabel.text = viewModel.likes
+        commentsLabel.text = viewModel.comments
+        favouritesLabel.text = viewModel.favourites
+        downloadsLabel.text = viewModel.downloads
+
+        // TODO; bind this the image view
+        print(viewModel.imageUrls.mediumSize)
+        print(viewModel.postedByUser.avatarUrl)
+
+        cancellable = viewModel.mainImage
+            .receive(on: RunLoop.main)
+            .sink { [unowned self] image in
+                self.showImage(image: image)
+            }
+    }
+
+     func showImage(image: UIImage?) {
+        cancelImageLoading()
+        UIView.transition(with: mainImageView,
+        duration: 0.3,
+        options: [.curveEaseOut, .transitionCrossDissolve],
+        animations: {
+            self.mainImageView.image = image
+        })
+    }
+
+    // MARK: - Private Helpers
+
+    private func applyStyle() {
         self.backgroundColor = Theme.secondaryBackgroundColor
         containerView.backgroundColor = Theme.secondaryBackgroundColor
+        mainImageView.backgroundColor = Theme.backgroundColor
 
         userAvatarImageView.image = UIImage(named: "user-avatar")
         likesIconView.image = UIImage(named: "speech-bubble")
@@ -70,21 +110,8 @@ final class PhotoCollectionViewCell: UICollectionViewCell, NibProvidable, Reusab
         }
     }
 
-    // MARK: - Configuration
-
-    func configure(with viewModel: PhotoViewModel) {
-
-        userNameLabel.text = "By: " + viewModel.postedByUser.name
-
-        tagsLabel.text = "Tags: " + viewModel.tags
-
-        likesLabel.text = viewModel.likes
-        commentsLabel.text = viewModel.comments
-        favouritesLabel.text = viewModel.favourites
-        downloadsLabel.text = viewModel.downloads
-
-        // TODO; bind this the image view
-        print(viewModel.imageUrls.mediumSize)
-        print(viewModel.postedByUser.avatarUrl)
+    private func cancelImageLoading() {
+        mainImageView.image = nil
+        cancellable?.cancel()
     }
 }

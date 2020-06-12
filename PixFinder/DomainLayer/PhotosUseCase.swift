@@ -10,19 +10,17 @@ import Foundation
 import Combine
 import UIKit.UIImage
 
-protocol PhotosUseCaseType {
-
-    /// Triggers a photos search with a query string
-    func searchPhotos(with query: String) -> AnyPublisher<Result<[Photo], Error>, Never>
-}
-
 final class PhotosUseCase: PhotosUseCaseType {
 
     private let networkService: NetworkServiceType
+    private let imageLoaderService: ImageLoaderServiceType
 
-    init(networkService: NetworkServiceType) {
+    init(networkService: NetworkServiceType, imageLoaderService: ImageLoaderServiceType) {
         self.networkService = networkService
+        self.imageLoaderService = imageLoaderService
     }
+
+    // MARK: - PhotosUseCaseType
 
     func searchPhotos(with query: String) -> AnyPublisher<Result<[Photo], Error>, Never> {
         return networkService
@@ -35,6 +33,18 @@ final class PhotosUseCase: PhotosUseCaseType {
         })
         .subscribe(on: Scheduler.background)
         .receive(on: Scheduler.main)
+        .eraseToAnyPublisher()
+    }
+
+    func loadImage(for url: URL) -> AnyPublisher<UIImage?, Never> {
+        return Deferred { return Just(url) }
+        .flatMap { [weak self] url -> AnyPublisher<UIImage?, Never> in
+            guard let self = self else { return .just(nil) }
+            return self.imageLoaderService.loadImage(from: url)
+        }
+        .subscribe(on: Scheduler.background)
+        .receive(on: Scheduler.main)
+        .share()
         .eraseToAnyPublisher()
     }
 }

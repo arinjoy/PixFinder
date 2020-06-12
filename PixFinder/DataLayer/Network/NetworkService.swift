@@ -10,6 +10,7 @@ import Foundation
 import Combine
 
 final class NetworkService: NetworkServiceType {
+
     private let session: URLSession
 
     init(session: URLSession = URLSession(configuration: URLSessionConfiguration.ephemeral)) {
@@ -18,13 +19,20 @@ final class NetworkService: NetworkServiceType {
 
     @discardableResult
     func load<T>(_ resource: Resource<T>) -> AnyPublisher<Result<T, NetworkError>, Never> {
-        guard let request = resource.request else {
+        guard var request = resource.request else {
             return .just(.failure(NetworkError.invalidRequest))
         }
+
+        // Set 10 seconds timeout for the request,
+        // otherwise defaults to 60 seconds which is too long.
+        // This helps in network disconnection and error testing
+        request.timeoutInterval = 10.0
+
         return URLSession.shared.dataTaskPublisher(for: request)
             .mapError { _ in NetworkError.invalidRequest }
             .print()
             .flatMap { data, response -> AnyPublisher<Data, Error> in
+
                 guard let response = response as? HTTPURLResponse else {
                     return .fail(NetworkError.invalidResponse)
                 }
@@ -35,10 +43,10 @@ final class NetworkService: NetworkServiceType {
                 return .just(data)
             }
             .decode(type: T.self, decoder: JSONDecoder())
-        .map { .success($0) }
-        .catch ({ error -> AnyPublisher<Result<T, NetworkError>, Never> in
-            return .just(.failure(NetworkError.jsonDecodingError(error: error)))
-        })
-        .eraseToAnyPublisher()
+            .map { .success($0) }
+            .catch { error -> AnyPublisher<Result<T, NetworkError>, Never> in
+                return .just(.failure(NetworkError.jsonDecodingError(error: error)))
+            }
+            .eraseToAnyPublisher()
     }
 }

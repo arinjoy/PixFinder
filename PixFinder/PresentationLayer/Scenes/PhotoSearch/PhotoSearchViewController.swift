@@ -41,10 +41,9 @@ final class PhotoSearchViewController: UIViewController {
 
     private var cancellables: [AnyCancellable] = []
 
-    // TODO: use for testing network layer works
-    private let useCase: PhotosUseCaseType = PhotosUseCase(
-        networkService: ServicesProvider.defaultProvider().network
-    )
+    private var imageLoadingQueue = OperationQueue()
+    private var imageLoadingOperations: [IndexPath: ImageLoadOperation] = [:]
+    private var imageStore: [IndexPath: UIImage?] = [:]
 
     private lazy var dataSource: UICollectionViewDiffableDataSource<Section, PhotoViewModel> = {
         return makeDataSource()
@@ -174,6 +173,23 @@ extension PhotoSearchViewController: UICollectionViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         searchController.searchBar.resignFirstResponder()
     }
+
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard let cell = cell as? PhotoCollectionViewCell else { return }
+
+        // Check if image store has this image loaded already, then update using the same
+        if let image = imageStore[indexPath] {
+            cell.showImage(image: image)
+        } else {
+            // Else, add image loading operation and attach the image update closure
+            let updateCellClosure: (UIImage?) -> Void = { [weak self] image in
+                cell.showImage(image: image)
+                self?.imageStore[indexPath] = image
+                self?.removeImageLoadOperation(atIndexPath: indexPath)
+            }
+            addImageLoadOperation(atIndexPath: indexPath, updateCellClosure: updateCellClosure)
+        }
+    }
 }
 
 
@@ -198,9 +214,53 @@ extension PhotoSearchViewController {
     }
 
     func update(with photos: [PhotoViewModel], animate: Bool = false) {
+
+        // Clear any existing image loading operations and image store
+        resetAllImageLoaders()
+        
         var snapshot = NSDiffableDataSourceSnapshot<Section, PhotoViewModel>()
         snapshot.appendSections(Section.allCases)
         snapshot.appendItems(photos, toSection: .photos)
         self.dataSource.apply(snapshot, animatingDifferences: animate)
+    }
+}
+
+extension PhotoSearchViewController {
+
+    func addImageLoadOperation(atIndexPath indexPath: IndexPath, updateCellClosure: ((UIImage?) -> Void)?) {
+
+        // If an image loader exists for this indexPath, do not add it again
+        guard imageLoadingOperations[indexPath] == nil else { return }
+
+        // Find the web Url of the rquired indexPath from the data source
+
+        if let photoViewModel = dataSource.itemIdentifier(for: indexPath) as PhotoViewModel? {
+
+            // Create an image loader for the medium size URL
+            let imageLoader = ImageLoadOperation(withUrl: photoViewModel.imageUrls.mediumSize)
+
+            // Attach completion closure when data arrives to update cell
+            imageLoader.completionHandler = updateCellClosure
+
+            imageLoadingQueue.addOperation(imageLoader)
+            imageLoadingOperations[indexPath] = imageLoader
+        }
+    }
+
+    func removeImageLoadOperation(atIndexPath indexPath: IndexPath) {
+
+        // If there's a image loader for this index path and we don't
+        // need it any more, then Cancel and Dispose
+        if let imageLoader = imageLoadingOperations[indexPath] {
+            imageLoader.cancel()
+            imageLoadingOperations.removeValue(forKey: indexPath)
+        }
+    }
+
+    private func resetAllImageLoaders() {
+        for (indexPath, _) in imageLoadingOperations {
+            removeImageLoadOperation(atIndexPath: indexPath)
+        }
+        imageStore = [:]
     }
 }

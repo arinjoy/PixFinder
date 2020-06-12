@@ -12,18 +12,20 @@ enum Theme {
 
     // MARK: - Colors
 
-    private static let tealColor = UIColor.colorFrom(red: 58, green: 141, blue: 123)
+    static let tealColor = UIColor.colorFrom(red: 25, green: 95, blue: 80)
+    static let orangeColor = UIColor.colorFrom(red: 224, green: 100, blue: 27)
+
     static let lightTealGrayColor = UIColor.colorFrom(red: 226, green: 232, blue: 230)
-    static let lightOrangeGrayColor = UIColor.colorFrom(red: 51, green: 46, blue: 45)
+    static let darkOrangeGrayColor = UIColor.colorFrom(red: 10, green: 6, blue: 3)
 
     static let tintColor = UIColor(light: Theme.tealColor,
-                                   dark: UIColor.orange)
+                                   dark: Theme.orangeColor)
 
     static let backgroundColor =  UIColor(light: UIColor.white,
-                                          dark: Theme.lightOrangeGrayColor)
+                                          dark: UIColor.black)
 
     static let secondaryBackgroundColor = UIColor(light: Theme.lightTealGrayColor,
-                                               dark: UIColor.black)
+                                                  dark: Theme.darkOrangeGrayColor)
 
     static let primaryTextColor = UIColor(light: .darkText,
                                           dark: .lightText)
