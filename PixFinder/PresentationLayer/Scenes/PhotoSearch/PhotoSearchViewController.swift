@@ -20,7 +20,7 @@ final class PhotoSearchViewController: UIViewController {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
-        searchController.searchBar.tintColor = UIColor.black
+        searchController.searchBar.tintColor = Theme.tintColor
         searchController.searchBar.delegate = self
         return searchController
     }()
@@ -70,6 +70,9 @@ final class PhotoSearchViewController: UIViewController {
     private func configureUI() {
         definesPresentationContext = true
         title = NSLocalizedString("Pixabay photos", comment: "Pixabay photos")
+
+        view.backgroundColor = Theme.secondaryBackgroundColor
+        collectionView.backgroundColor = Theme.secondaryBackgroundColor
 
         collectionView.registerNib(cellClass: PhotoCollectionViewCell.self)
         collectionView.collectionViewLayout = customPhotoGridLayout()
@@ -135,7 +138,7 @@ final class PhotoSearchViewController: UIViewController {
           let isPhone = layoutEnvironment.traitCollection.userInterfaceIdiom == UIUserInterfaceIdiom.phone
           let size = NSCollectionLayoutSize(
             widthDimension: NSCollectionLayoutDimension.fractionalWidth(1),
-            heightDimension: NSCollectionLayoutDimension.absolute(isPhone ? 280 : 250)
+            heightDimension: NSCollectionLayoutDimension.absolute(isPhone ? 320 : 280)
           )
           let itemCount = isPhone ? 1 : 3
           let item = NSCollectionLayoutItem(layoutSize: size)

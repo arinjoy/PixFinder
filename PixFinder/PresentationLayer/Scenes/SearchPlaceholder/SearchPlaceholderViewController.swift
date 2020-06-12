@@ -20,6 +20,11 @@ final class SearchPlaceholderViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        view.backgroundColor = Theme.secondaryBackgroundColor
+        imageView.tintColor = Theme.primaryTextColor
+        titleLabel.textColor = Theme.primaryTextColor
+        descriptionLabel.textColor = Theme.primaryTextColor
     }
 
     // MARK: - Public

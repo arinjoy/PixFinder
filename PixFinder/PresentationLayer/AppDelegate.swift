@@ -19,15 +19,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> Bool {
 
         let window =  UIWindow(frame: UIScreen.main.bounds)
+
+        applyThemeStyles()
         
-        self.appCoordinator = ApplicationFlowCoordinator(window: window,
-                                                         dependencyProvider: ApplicationComponentsFactory())
-        self.appCoordinator.start()
+        appCoordinator = ApplicationFlowCoordinator(window: window,
+                                                    dependencyProvider: ApplicationComponentsFactory())
+        appCoordinator.start()
 
         self.window = window
         self.window?.makeKeyAndVisible()
 
         return true
+    }
+
+    private func applyThemeStyles() {
+        window?.backgroundColor = Theme.backgroundColor
+        window?.tintColor = Theme.tintColor
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: Theme.primaryTextColor]
     }
 }
 
