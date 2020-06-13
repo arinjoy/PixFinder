@@ -43,10 +43,11 @@ final class PhotoSearchViewController: UIViewController {
     private var cancellables: [AnyCancellable] = []
 
     // MARK: - Image loading operations related
+
     private var imageLoadingQueue = OperationQueue()
     private var imageLoadingOperations: [IndexPath: ImageLoadOperation] = [:]
     private var imageStore: [IndexPath: UIImage?] = [:]
-
+    
     private lazy var dataSource: UICollectionViewDiffableDataSource<Section, PhotoViewModel> = {
         return makeDataSource()
     }()
@@ -196,7 +197,7 @@ extension PhotoSearchViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let snapshot = dataSource.snapshot()
-        // Send reactive signal as selection made
+        // Send reactive signal as selection is made
         selection.send(snapshot.itemIdentifiers[indexPath.row].id)
     }
 
