@@ -140,17 +140,17 @@ final class PhotoCollectionViewCell: UICollectionViewCell, NibProvidable, Reusab
     }
 
     private func applyContainerShadowStyle() {
-        Shadow(color: Theme.primaryTextColor,
-           opacity: 0.3,
-           blur: 4,
-           offset: CGSize(width: 0, height: 0))
-        .apply(toView: self)
+        let shadow = Shadow(color: Theme.primaryTextColor,
+                            opacity: 0.4,
+                            blur: 4,
+                            offset: CGSize(width: 0, height: 0))
+        shadow.apply(toView: self)
 
         containerView.layer.masksToBounds = true
         containerView.layer.cornerRadius = 8.0
 
         userAvatarImageView.layer.masksToBounds = true
-        userAvatarImageView.layer.borderWidth = 1.5
+        userAvatarImageView.layer.borderWidth = 2.0
         userAvatarImageView.layer.borderColor = Theme.tertiaryBackgroundColor.cgColor
         userAvatarImageView.layer.cornerRadius = userAvatarImageView.bounds.width / 2
     }
