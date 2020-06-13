@@ -57,7 +57,7 @@ final class SearchPlaceholderViewController: UIViewController {
             label?.adjustsFontForContentSizeCategory = true
         }
 
-        titleLabel.font = UIFont.preferredFont(forTextStyle: .headline)
-        descriptionLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
+        titleLabel.font = Theme.titleFont
+        descriptionLabel.font = Theme.bodyFont
     }
 }

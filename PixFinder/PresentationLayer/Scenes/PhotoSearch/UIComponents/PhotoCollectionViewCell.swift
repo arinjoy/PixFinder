@@ -110,17 +110,21 @@ final class PhotoCollectionViewCell: UICollectionViewCell, NibProvidable, Reusab
         containerView.backgroundColor = Theme.secondaryBackgroundColor
         mainImageView.backgroundColor = Theme.tertiaryBackgroundColor
 
-        for label in [userNameLabel, tagsLabel] {
-            label?.font = UIFont.preferredFont(forTextStyle: .callout)
-            label?.adjustsFontForContentSizeCategory = true
-            label?.numberOfLines = 1
-        }
+        userNameLabel.numberOfLines = 1
+        tagsLabel.lineBreakMode = .byTruncatingTail
+        userNameLabel.adjustsFontForContentSizeCategory = true
+        userNameLabel.font = Theme.subheadingFont
+        
+        tagsLabel.numberOfLines = 1
+        tagsLabel.lineBreakMode = .byWordWrapping
+        tagsLabel.font = Theme.bodyFont
+        tagsLabel.adjustsFontForContentSizeCategory = true
 
         for label in [likesLabel,
                       commentsLabel,
                       favouritesLabel,
                       downloadsLabel] {
-            label?.font = UIFont.preferredFont(forTextStyle: .footnote)
+            label?.font = Theme.footnoteFont
             label?.adjustsFontForContentSizeCategory = true
             label?.numberOfLines = 1
         }
