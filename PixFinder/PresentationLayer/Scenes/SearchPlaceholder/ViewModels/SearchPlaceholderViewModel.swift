@@ -18,21 +18,21 @@ struct SearchPlaceholderViewModel {
     // TODO: load these string copies form `.strings` file
     
     static var startSearch: SearchPlaceholderViewModel {
-        let title = NSLocalizedString("Search for a photo.", comment: "Search for a photo.")
+        let title = StringKeys.PixFinder.searchPlaceholderTitle.localized()
         let image = UIImage(named: "search-circle") ?? UIImage()
         return SearchPlaceholderViewModel(image: image, title: title, description: nil)
     }
 
     static var noResults: SearchPlaceholderViewModel {
-        let title = NSLocalizedString("No photos found!", comment: "No photos found!")
-        let description = NSLocalizedString("Try searching again.", comment: "Try searching again.")
+        let title = StringKeys.PixFinder.searchNoResultsTitle.localized()
+        let description = StringKeys.PixFinder.searchNoResultsMessage.localized()
         let image = UIImage(named: "search-circle") ?? UIImage()
         return SearchPlaceholderViewModel(image: image, title: title, description: description)
     }
 
     static var dataLoadingError: SearchPlaceholderViewModel {
-        let title = NSLocalizedString("Can't load search results!", comment: "Can't load search results!")
-        let description = NSLocalizedString("Something went wrong. Try again please.", comment: "Something went wrong. Try again please. ")
+        let title = StringKeys.PixFinder.genericErrorTitle.localized()
+        let description = StringKeys.PixFinder.genericErrorMessage.localized()
         let image = UIImage(named: "error-triangle") ?? UIImage()
         return SearchPlaceholderViewModel(image: image, title: title, description: description)
     }

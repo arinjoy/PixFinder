@@ -81,7 +81,7 @@ final class PhotoSearchViewController: UIViewController {
     
     private func configureUI() {
         definesPresentationContext = true
-        title = NSLocalizedString("Pixabay photos", comment: "Pixabay photos")
+        title = StringKeys.PixFinder.photoSearchNavigationTitle.localized()
 
         collectionView.registerNib(cellClass: PhotoCollectionViewCell.self)
         collectionView.collectionViewLayout = customPhotoGridLayout()

@@ -16,6 +16,7 @@ final class PhotoCollectionViewCell: UICollectionViewCell, NibProvidable, Reusab
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var visualEffectView: UIVisualEffectView!
     @IBOutlet private weak var mainImageView: UIImageView!
+    @IBOutlet private weak var byUserPrefixLabel: UILabel!
     @IBOutlet private weak var userNameLabel: UILabel!
     @IBOutlet private weak var userAvatarImageView: UIImageView!
     @IBOutlet private weak var tagsLabel: UILabel!
@@ -46,18 +47,20 @@ final class PhotoCollectionViewCell: UICollectionViewCell, NibProvidable, Reusab
         super.awakeFromNib()
 
         userAvatarImageView.image = UIImage(named: "user-avatar")
-        likesIconView.image = UIImage(named: "speech-bubble")
-        commentsIconView.image = UIImage(named: "like-up")
+        likesIconView.image = UIImage(named: "like-up")
+        commentsIconView.image = UIImage(named: "speech-bubble")
         favouritesIconView.image = UIImage(named: "heart-love")
         downloadsIconView.image = UIImage(named: "download")
 
         applyStyles()
+        applyContainerShadowStyle()
     }
 
     // MARK: - Configuration
 
     func configure(with viewModel: PhotoViewModel) {
-
+        byUserPrefixLabel.text = StringKeys.PixFinder.userNamePrefix.localized()
+        
         userNameLabel.text = viewModel.postedByUser.name
         tagsLabel.text = viewModel.tags
 
@@ -112,16 +115,22 @@ final class PhotoCollectionViewCell: UICollectionViewCell, NibProvidable, Reusab
         self.backgroundColor = .clear
         containerView.backgroundColor = Theme.secondaryBackgroundColor
         mainImageView.backgroundColor = Theme.tertiaryBackgroundColor
-
-        userNameLabel.numberOfLines = 1
-        tagsLabel.lineBreakMode = .byTruncatingTail
-        userNameLabel.adjustsFontForContentSizeCategory = true
-        userNameLabel.font = Theme.subheadingFont
         
-        tagsLabel.numberOfLines = 1
-        tagsLabel.lineBreakMode = .byWordWrapping
+        visualEffectView.effect = UIBlurEffect(style: .systemMaterial)
+        
+        for label in [byUserPrefixLabel,
+                      userNameLabel,
+                      tagsLabel] {
+            label?.adjustsFontForContentSizeCategory = true
+            label?.numberOfLines = 1
+        }
+
+        byUserPrefixLabel.font = Theme.bodyFont
+        userNameLabel.font = Theme.subheadingFont
+        userNameLabel.lineBreakMode = .byTruncatingTail
+        
         tagsLabel.font = Theme.bodyFont
-        tagsLabel.adjustsFontForContentSizeCategory = true
+        tagsLabel.lineBreakMode = .byWordWrapping
 
         for label in [likesLabel,
                       commentsLabel,
@@ -142,8 +151,6 @@ final class PhotoCollectionViewCell: UICollectionViewCell, NibProvidable, Reusab
             imageView?.tintColor = Theme.primaryTextColor
             imageView?.contentMode = .scaleAspectFit
         }
-
-        applyContainerShadowStyle()
     }
 
     private func applyContainerShadowStyle() {
