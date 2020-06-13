@@ -29,6 +29,7 @@ struct PhotoViewModel {
     let comments: String
 
     let postedByUser: PostedByUser
+    let userAvatarImage: AnyPublisher<UIImage?, Never>
 
     init(id: Int,
          tags: String,
@@ -40,7 +41,8 @@ struct PhotoViewModel {
          favourites: String,
          likes: String,
          comments: String,
-         postedByUser: PostedByUser
+         postedByUser: PostedByUser,
+         userAvatarImage: AnyPublisher<UIImage?, Never>
     ) {
         self.id = id
         self.tags = tags
@@ -56,6 +58,7 @@ struct PhotoViewModel {
         self.comments = comments
 
         self.postedByUser = postedByUser
+        self.userAvatarImage = userAvatarImage
     }
 }
 

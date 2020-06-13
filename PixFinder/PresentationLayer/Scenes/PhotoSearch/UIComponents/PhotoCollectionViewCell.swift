@@ -30,17 +30,27 @@ final class PhotoCollectionViewCell: UICollectionViewCell, NibProvidable, Reusab
 
     // MARK: - Private Propertie
 
-    private var cancellable: AnyCancellable?
+    private var mainImageCancellable: AnyCancellable?
+    private var userAvatarImageCancellable: AnyCancellable?
 
     // MARK: - Lifecyle
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        cancelImageLoading()
+
+        cancelMainImageLoading()
+        cancelUserAvatarImageLoading()
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
+
+        userAvatarImageView.image = UIImage(named: "user-avatar")
+        likesIconView.image = UIImage(named: "speech-bubble")
+        commentsIconView.image = UIImage(named: "like-up")
+        favouritesIconView.image = UIImage(named: "heart-love")
+        downloadsIconView.image = UIImage(named: "download")
+
         applyStyles()
     }
 
@@ -48,25 +58,29 @@ final class PhotoCollectionViewCell: UICollectionViewCell, NibProvidable, Reusab
 
     func configure(with viewModel: PhotoViewModel) {
 
-        userNameLabel.text = "By: " + viewModel.postedByUser.name
-        tagsLabel.text = "Tags: " + viewModel.tags
+        userNameLabel.text = viewModel.postedByUser.name
+        tagsLabel.text = viewModel.tags
 
         likesLabel.text = viewModel.likes
         commentsLabel.text = viewModel.comments
         favouritesLabel.text = viewModel.favourites
         downloadsLabel.text = viewModel.downloads
 
-        cancellable = viewModel.mainImage
-            .receive(on: RunLoop.main)
+        mainImageCancellable = viewModel.mainImage
+            .receive(on: Scheduler.main)
             .sink { [unowned self] image in
-                self.showImage(image: image)
+                self.showMainImage(image: image)
             }
 
-        applyContainerShadowStyle()
+        userAvatarImageCancellable = viewModel.userAvatarImage
+            .receive(on: Scheduler.main)
+            .sink { [unowned self] image in
+                self.showUserAvatarImage(image: image)
+            }
     }
 
-     func showImage(image: UIImage?) {
-        cancelImageLoading()
+     func showMainImage(image: UIImage?) {
+        cancelMainImageLoading()
 
         UIView.transition(
             with: mainImageView,
@@ -77,6 +91,18 @@ final class PhotoCollectionViewCell: UICollectionViewCell, NibProvidable, Reusab
             })
     }
 
+     func showUserAvatarImage(image: UIImage?) {
+        cancelUserAvatarImageLoading()
+
+        UIView.transition(
+            with: userAvatarImageView,
+            duration: 0.3,
+            options: [.curveEaseOut, .transitionCrossDissolve],
+            animations: {
+                self.userAvatarImageView.image = image
+            })
+    }
+
     // MARK: - Private Helpers
 
     private func applyStyles() {
@@ -84,16 +110,10 @@ final class PhotoCollectionViewCell: UICollectionViewCell, NibProvidable, Reusab
         containerView.backgroundColor = Theme.secondaryBackgroundColor
         mainImageView.backgroundColor = Theme.tertiaryBackgroundColor
 
-        userAvatarImageView.image = UIImage(named: "user-avatar")
-        likesIconView.image = UIImage(named: "speech-bubble")
-        commentsIconView.image = UIImage(named: "like-up")
-        favouritesIconView.image = UIImage(named: "heart-love")
-        downloadsIconView.image = UIImage(named: "download")
-
-
         for label in [userNameLabel, tagsLabel] {
             label?.font = UIFont.preferredFont(forTextStyle: .callout)
             label?.adjustsFontForContentSizeCategory = true
+            label?.numberOfLines = 1
         }
 
         for label in [likesLabel,
@@ -102,6 +122,7 @@ final class PhotoCollectionViewCell: UICollectionViewCell, NibProvidable, Reusab
                       downloadsLabel] {
             label?.font = UIFont.preferredFont(forTextStyle: .footnote)
             label?.adjustsFontForContentSizeCategory = true
+            label?.numberOfLines = 1
         }
 
         userAvatarImageView.tintColor = Theme.tertiaryBackgroundColor
@@ -114,6 +135,8 @@ final class PhotoCollectionViewCell: UICollectionViewCell, NibProvidable, Reusab
             imageView?.tintColor = Theme.primaryTextColor
             imageView?.contentMode = .scaleAspectFit
         }
+
+        applyContainerShadowStyle()
     }
 
     private func applyContainerShadowStyle() {
@@ -125,10 +148,20 @@ final class PhotoCollectionViewCell: UICollectionViewCell, NibProvidable, Reusab
 
         containerView.layer.masksToBounds = true
         containerView.layer.cornerRadius = 8.0
+
+        userAvatarImageView.layer.masksToBounds = true
+        userAvatarImageView.layer.borderWidth = 1.5
+        userAvatarImageView.layer.borderColor = Theme.tertiaryBackgroundColor.cgColor
+        userAvatarImageView.layer.cornerRadius = userAvatarImageView.bounds.width / 2
     }
 
-    private func cancelImageLoading() {
+    private func cancelMainImageLoading() {
         mainImageView.image = nil
-        cancellable?.cancel()
+        mainImageCancellable?.cancel()
+    }
+
+    private func cancelUserAvatarImageLoading() {
+        userAvatarImageView.image = UIImage(named: "user-avatar")
+        userAvatarImageCancellable?.cancel()
     }
 }

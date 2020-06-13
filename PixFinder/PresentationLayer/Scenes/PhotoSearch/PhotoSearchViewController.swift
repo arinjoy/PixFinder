@@ -209,11 +209,11 @@ extension PhotoSearchViewController: UICollectionViewDelegate {
 
         // Check if image store has this image loaded already, then update using the same
         if let image = imageStore[indexPath] {
-            cell.showImage(image: image)
+            cell.showMainImage(image: image)
         } else {
             // Else, add image loading operation and attach the image update closure
             let updateCellClosure: (UIImage?) -> Void = { [weak self] image in
-                cell.showImage(image: image)
+                cell.showMainImage(image: image)
                 self?.imageStore[indexPath] = image
                 self?.removeImageLoadOperation(atIndexPath: indexPath)
             }

@@ -18,6 +18,8 @@ struct PhotoViewModelTransformer {
     ) -> PhotoViewModel? {
 
         // Note: Here comes the raw data model to presentation data model conversion logic via `Transformer`
+        // Data integrety rules can be checked here and `nil` can be returned which will end up being discarded
+        // this photo item if one/more of its manadtory property is/are missing/incorrect
         
         guard
             let pageUrl = URL(string: photo.pageUrl),
@@ -41,13 +43,15 @@ struct PhotoViewModelTransformer {
                               likes: photo.likesCount.roundedStringified,
                               comments: photo.commentsCount.roundedStringified,
                               postedByUser: PostedByUser(name: photo.postedByUserName,
-                                                         avatarUrl: postedByUserAvatarUrl))
+                                                         avatarUrl: postedByUserAvatarUrl),
+                              userAvatarImage: imageLoader(postedByUserAvatarUrl))
     }
     
 }
 
 fileprivate extension Int {
 
+    /// Returns a strigified representation of a large number such as 29.3K, 1.5M or just number if its less than a thousand
     var roundedStringified: String {
         let number = Double(self)
         let thousand = number / 1000
