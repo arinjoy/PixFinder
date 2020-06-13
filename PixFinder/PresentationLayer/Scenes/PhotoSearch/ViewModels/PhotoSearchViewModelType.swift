@@ -7,11 +7,8 @@
 //
 
 import Foundation
+import UIKit.UIImage
 import Combine
-
-protocol PhotoSearchViewModelType {
-    func transform(input: PhotoSearchViewModelInput) -> PhotoSearchViewModelOutput
-}
 
 struct PhotoSearchViewModelInput {
 
@@ -36,6 +33,32 @@ struct PhotoSearchViewModelInput {
 }
 
 typealias PhotoSearchViewModelOutput = AnyPublisher<PhotoSearchState, Never>
+
+
+enum ImageType {
+    case mainPhoto
+    case userAvatar
+}
+
+protocol PhotoSearchViewModelType {
+
+    func transform(input: PhotoSearchViewModelInput) -> PhotoSearchViewModelOutput
+
+    /// A cache/store of images loaded for main photo images
+    var mainImageStore: [IndexPath: UIImage?] { get set }
+
+    /// A cache/store of images loaded for user avatar images
+    var avatarImageStore: [IndexPath: UIImage?] { get set }
+
+    /// Will add an image loading opeation at a specified indexPath (if not already added) for a type of image
+    func addImageLoadOperation(atIndexPath indexPath: IndexPath, forImageType type: ImageType, updateCellClosure: ((UIImage?) -> Void)?)
+
+    /// Will remove an image loading opeation at a specified indexPath (if exists) for a type of image
+    func removeImageLoadOperation(atIndexPath indexPath: IndexPath, forImageType type: ImageType)
+
+    /// Will reset/clear all image loading opeations for a type of image
+    func resetAllImageLoaders(forImageType type: ImageType)
+}
 
 enum PhotoSearchState {
     case idle

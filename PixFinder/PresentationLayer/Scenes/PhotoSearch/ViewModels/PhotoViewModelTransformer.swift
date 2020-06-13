@@ -14,7 +14,8 @@ struct PhotoViewModelTransformer {
 
     static func viewModel(
         from photo: Photo,
-        imageLoader: (URL) -> AnyPublisher<UIImage?, Never>
+        mainImageLoader: (URL) -> AnyPublisher<UIImage?, Never>,
+        userAvatarImageLoader: (URL) -> AnyPublisher<UIImage?, Never>
     ) -> PhotoViewModel? {
 
         // Note: Here comes the raw data model to presentation data model conversion logic via `Transformer`
@@ -36,7 +37,7 @@ struct PhotoViewModelTransformer {
                               imageUrls: ImageURLTuple(preview: previewUrl,
                                                        mediumSize: mediumSizeUrl,
                                                        largeSize: largeSizeUrl),
-                              mainImage: imageLoader(mediumSizeUrl),
+                              mainImage: mainImageLoader(mediumSizeUrl),
                               views: photo.totalViews.roundedStringified,
                               downloads: photo.totalDownloads.roundedStringified,
                               favourites: photo.favouritesCount.roundedStringified,
@@ -44,7 +45,7 @@ struct PhotoViewModelTransformer {
                               comments: photo.commentsCount.roundedStringified,
                               postedByUser: PostedByUser(name: photo.postedByUserName,
                                                          avatarUrl: postedByUserAvatarUrl),
-                              userAvatarImage: imageLoader(postedByUserAvatarUrl))
+                              userAvatarImage: userAvatarImageLoader(postedByUserAvatarUrl))
     }
     
 }

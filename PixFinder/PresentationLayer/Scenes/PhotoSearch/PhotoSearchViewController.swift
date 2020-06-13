@@ -209,16 +209,35 @@ extension PhotoSearchViewController: UICollectionViewDelegate {
         guard let cell = cell as? PhotoCollectionViewCell else { return }
 
         // Check if image store has this image loaded already, then update using the same
-        if let image = imageStore[indexPath] {
-            cell.showMainImage(image: image)
+        if let mainImage = viewModel.mainImageStore[indexPath] {
+            cell.showMainImage(image: mainImage)
         } else {
             // Else, add image loading operation and attach the image update closure
-            let updateCellClosure: (UIImage?) -> Void = { [weak self] image in
+            let updateCellClosure1: (UIImage?) -> Void = { [weak self] image in
                 cell.showMainImage(image: image)
-                self?.imageStore[indexPath] = image
-                self?.removeImageLoadOperation(atIndexPath: indexPath)
+                self?.viewModel.mainImageStore[indexPath] = image
+                self?.viewModel.removeImageLoadOperation(atIndexPath: indexPath,
+                                                         forImageType: .mainPhoto)
             }
-            addImageLoadOperation(atIndexPath: indexPath, updateCellClosure: updateCellClosure)
+            viewModel.addImageLoadOperation(atIndexPath: indexPath,
+                                            forImageType: .mainPhoto,
+                                            updateCellClosure: updateCellClosure1)
+        }
+
+        // Same logic for user avatar images
+        if let avatarImage = viewModel.avatarImageStore[indexPath] {
+            cell.showUserAvatarImage(image: avatarImage)
+        } else {
+            // Else, add image loading operation and attach the image update closure
+            let updateCellClosure2: (UIImage?) -> Void = { [weak self] image in
+                cell.showUserAvatarImage(image: image)
+                self?.viewModel.avatarImageStore[indexPath] = image
+                self?.viewModel.removeImageLoadOperation(atIndexPath: indexPath,
+                                                         forImageType: .userAvatar)
+            }
+            viewModel.addImageLoadOperation(atIndexPath: indexPath,
+                                            forImageType: .userAvatar,
+                                            updateCellClosure: updateCellClosure2)
         }
     }
 }
@@ -243,54 +262,10 @@ extension PhotoSearchViewController {
         )
     }
 
-    func update(with photos: [PhotoViewModel], animate: Bool = false) {
-
-        // Clear any existing image loading operations and image store
-        resetAllImageLoaders()
-        
+    func update(with photos: [PhotoViewModel], animate: Bool = false) {        
         var snapshot = NSDiffableDataSourceSnapshot<Section, PhotoViewModel>()
         snapshot.appendSections(Section.allCases)
         snapshot.appendItems(photos, toSection: .photos)
         dataSource.apply(snapshot, animatingDifferences: animate)
-    }
-}
-
-extension PhotoSearchViewController {
-
-    func addImageLoadOperation(atIndexPath indexPath: IndexPath, updateCellClosure: ((UIImage?) -> Void)?) {
-
-        // If an image loader exists for this indexPath, do not add it again
-        guard imageLoadingOperations[indexPath] == nil else { return }
-
-        // Find the web Url of the rquired indexPath from the data source
-
-        if let photoViewModel = dataSource.itemIdentifier(for: indexPath) as PhotoViewModel? {
-
-            // Create an image loader for the medium size URL
-            let imageLoader = ImageLoadOperation(withUrl: photoViewModel.imageUrls.mediumSize)
-
-            // Attach completion closure when data arrives to update cell
-            imageLoader.completionHandler = updateCellClosure
-
-            imageLoadingQueue.addOperation(imageLoader)
-            imageLoadingOperations[indexPath] = imageLoader
-        }
-    }
-
-    func removeImageLoadOperation(atIndexPath indexPath: IndexPath) {
-
-        // If there's a image loader for this index path and we don't
-        // need it any more, then Cancel and Dispose
-        if let imageLoader = imageLoadingOperations[indexPath] {
-            imageLoader.cancel()
-            imageLoadingOperations.removeValue(forKey: indexPath)
-        }
-    }
-
-    private func resetAllImageLoaders() {
-        for (indexPath, _) in imageLoadingOperations {
-            removeImageLoadOperation(atIndexPath: indexPath)
-        }
-        imageStore = [:]
     }
 }

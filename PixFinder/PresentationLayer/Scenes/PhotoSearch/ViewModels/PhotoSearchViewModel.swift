@@ -12,16 +12,35 @@ import Combine
 final class PhotoSearchViewModel: PhotoSearchViewModelType {
 
     // MARK: - Private Properties
-    
-    private let useCase: PhotosUseCaseType
+
+    /// The latest list of photos being searched
+    private var photoList: [PhotoViewModel] = [] {
+        didSet {
+            // While new photos are being assigned, cancel any existing image loading operations and image store
+            self.resetAllImageLoaders(forImageType: .mainPhoto)
+            self.resetAllImageLoaders(forImageType: .userAvatar)
+        }
+    }
     
     private var cancellables: [AnyCancellable] = []
+
+    private var mainImageLoadingQueue = OperationQueue()
+    private var mainImageLoadingOperations: [IndexPath: ImageLoadOperation] = [:]
+    private var avatarImageLoadingQueue = OperationQueue()
+    private var avatarImageLoadingOperations: [IndexPath: ImageLoadOperation] = [:]
+
+    // MARK: - Dependency
+    
+    private let useCase: PhotosUseCaseType
 
     init(useCase: PhotosUseCaseType) {
         self.useCase = useCase
     }
 
     // MARK: - PhotoSearchViewModelType
+
+    var mainImageStore: [IndexPath : UIImage?] = [:]
+    var avatarImageStore: [IndexPath : UIImage?] = [:]
 
     func transform(input: PhotoSearchViewModelInput) -> PhotoSearchViewModelOutput {
 
@@ -49,10 +68,13 @@ final class PhotoSearchViewModel: PhotoSearchViewModelType {
             .map { result -> PhotoSearchState in
                 switch result {
                 case .success([]):
+                    self.photoList = []
                     return .noResults
                 case .success(let photos):
-                    return .success(self.viewModels(from: photos))
+                    self.photoList = self.photoViewModels(from: photos)
+                    return .success(self.photoList)
                 case .failure(let error):
+                    self.photoList = []
                     return .failure(error)
                 }
             }
@@ -84,11 +106,74 @@ final class PhotoSearchViewModel: PhotoSearchViewModelType {
             .eraseToAnyPublisher()
     }
 
-    private func viewModels(from photos: [Photo]) -> [PhotoViewModel] {
+    func addImageLoadOperation(atIndexPath indexPath: IndexPath, forImageType type: ImageType, updateCellClosure: ((UIImage?) -> Void)?) {
+
+        switch type {
+        case .mainPhoto:
+            // If an image loader exists for this indexPath, do not add it again
+            guard mainImageLoadingOperations[indexPath] == nil,
+                photoList.count > indexPath.row
+            else { return }
+
+            let imageLoader = ImageLoadOperation(withUrl: photoList[indexPath.row].imageUrls.mediumSize)
+            imageLoader.completionHandler = updateCellClosure
+            mainImageLoadingQueue.addOperation(imageLoader)
+            mainImageLoadingOperations[indexPath] = imageLoader
+
+        case .userAvatar:
+            // If an image loader exists for this indexPath, do not add it again
+            guard avatarImageLoadingOperations[indexPath] == nil,
+                photoList.count > indexPath.row
+            else { return }
+
+            let imageLoader = ImageLoadOperation(withUrl: photoList[indexPath.row].postedByUser.avatarUrl)
+            imageLoader.completionHandler = updateCellClosure
+            avatarImageLoadingQueue.addOperation(imageLoader)
+            avatarImageLoadingOperations[indexPath] = imageLoader
+        }
+    }
+
+    func removeImageLoadOperation(atIndexPath indexPath: IndexPath, forImageType type: ImageType) {
+
+        switch type {
+        case .mainPhoto:
+            if let imageLoader = mainImageLoadingOperations[indexPath] {
+                imageLoader.cancel()
+                mainImageLoadingOperations.removeValue(forKey: indexPath)
+            }
+        case .userAvatar:
+            if let imageLoader = avatarImageLoadingOperations[indexPath] {
+                imageLoader.cancel()
+                avatarImageLoadingOperations.removeValue(forKey: indexPath)
+            }
+        }
+    }
+
+    func resetAllImageLoaders(forImageType type: ImageType) {
+        switch type {
+        case .mainPhoto:
+            for (indexPath, _) in mainImageLoadingOperations {
+                removeImageLoadOperation(atIndexPath: indexPath, forImageType: .mainPhoto)
+            }
+            mainImageStore = [:]
+        case .userAvatar:
+            for (indexPath, _) in avatarImageLoadingOperations {
+                removeImageLoadOperation(atIndexPath: indexPath, forImageType: .userAvatar)
+            }
+            avatarImageStore = [:]
+        }
+    }
+
+    // MARK: - Private Helpers
+
+    private func photoViewModels(from photos: [Photo]) -> [PhotoViewModel] {
         return photos.map { photo in
             return PhotoViewModelTransformer.viewModel(
                 from: photo,
-                imageLoader: { [unowned self] url in
+                mainImageLoader: { [unowned self] url in
+                    self.useCase.loadImage(for: url)
+                },
+                userAvatarImageLoader: { [unowned self] url in
                     self.useCase.loadImage(for: url)
                 })
         }
