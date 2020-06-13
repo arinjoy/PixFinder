@@ -148,18 +148,27 @@ final class PhotoSearchViewController: UIViewController {
          */
 
         return UICollectionViewCompositionalLayout(sectionProvider: { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
-          let isPhone = layoutEnvironment.traitCollection.userInterfaceIdiom == UIUserInterfaceIdiom.phone
-          let size = NSCollectionLayoutSize(
-            widthDimension: NSCollectionLayoutDimension.fractionalWidth(1),
-            heightDimension: NSCollectionLayoutDimension.absolute(isPhone ? 320 : 360)
-          )
-          let itemCount = isPhone ? 1 : 3
-          let item = NSCollectionLayoutItem(layoutSize: size)
-          let group = NSCollectionLayoutGroup.horizontal(layoutSize: size, subitem: item, count: itemCount)
-          let section = NSCollectionLayoutSection(group: group)
-          section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
-          section.interGroupSpacing = 16
-          return section
+            let isPhone = layoutEnvironment.traitCollection.userInterfaceIdiom == UIUserInterfaceIdiom.phone
+            let size = NSCollectionLayoutSize(
+                widthDimension: NSCollectionLayoutDimension.fractionalWidth(1),
+                heightDimension: NSCollectionLayoutDimension.absolute(isPhone ? 340 : 280)
+            )
+            
+            let item = NSCollectionLayoutItem(layoutSize: size)
+
+            let itemCount = isPhone ? 1 : 3
+            let padding: CGFloat = isPhone ? 16 : 24
+
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: size, subitem: item, count: itemCount)
+            group.interItemSpacing = NSCollectionLayoutSpacing.fixed(padding)
+
+            let section = NSCollectionLayoutSection(group: group)
+            section.contentInsets = NSDirectionalEdgeInsets(top: padding,
+                                                            leading: padding,
+                                                            bottom: padding,
+                                                            trailing: padding)
+            section.interGroupSpacing = padding
+            return section
         })
     }
 

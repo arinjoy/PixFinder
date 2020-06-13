@@ -21,10 +21,7 @@ final class SearchPlaceholderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = Theme.secondaryBackgroundColor
-        imageView.tintColor = Theme.primaryTextColor
-        titleLabel.textColor = Theme.primaryTextColor
-        descriptionLabel.textColor = Theme.primaryTextColor
+        applyStyles()
     }
 
     // MARK: - Public
@@ -47,5 +44,20 @@ final class SearchPlaceholderViewController: UIViewController {
         titleLabel.text = viewModel.title
         descriptionLabel.text = viewModel.description
         imageView.image = viewModel.image
+    }
+
+    private func applyStyles() {
+        view.backgroundColor = Theme.secondaryBackgroundColor
+
+        imageView.tintColor = Theme.primaryTextColor
+        imageView.contentMode = .scaleAspectFit
+
+        for label in [titleLabel, descriptionLabel] {
+            label?.textColor = Theme.primaryTextColor
+            label?.adjustsFontForContentSizeCategory = true
+        }
+
+        titleLabel.font = UIFont.preferredFont(forTextStyle: .headline)
+        descriptionLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
     }
 }

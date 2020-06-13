@@ -90,23 +90,29 @@ final class PhotoCollectionViewCell: UICollectionViewCell, NibProvidable, Reusab
         favouritesIconView.image = UIImage(named: "heart-love")
         downloadsIconView.image = UIImage(named: "download")
 
-        for view in [userNameLabel,
-                     tagsLabel,
-                     likesLabel,
-                     commentsLabel,
-                     favouritesLabel,
-                     downloadsLabel] {
-            view?.textColor = Theme.primaryTextColor
-            view?.adjustsFontSizeToFitWidth = true
+
+        for label in [userNameLabel, tagsLabel] {
+            label?.font = UIFont.preferredFont(forTextStyle: .callout)
+            label?.adjustsFontForContentSizeCategory = true
         }
 
-        for view in [userAvatarImageView,
-                     likesIconView,
-                     commentsIconView,
-                     favouritesIconView,
-                     downloadsIconView] {
-            view?.tintColor = Theme.primaryTextColor
-            view?.contentMode = .scaleAspectFit
+        for label in [likesLabel,
+                      commentsLabel,
+                      favouritesLabel,
+                      downloadsLabel] {
+            label?.font = UIFont.preferredFont(forTextStyle: .footnote)
+            label?.adjustsFontForContentSizeCategory = true
+        }
+
+        userAvatarImageView.tintColor = Theme.tertiaryBackgroundColor
+        userAvatarImageView.contentMode = .scaleAspectFit
+
+        for imageView in [likesIconView,
+                          commentsIconView,
+                          favouritesIconView,
+                          downloadsIconView] {
+            imageView?.tintColor = Theme.primaryTextColor
+            imageView?.contentMode = .scaleAspectFit
         }
     }
 
