@@ -143,24 +143,31 @@ final class PhotoSearchViewController: UIViewController {
 
         /**
          For all sorts of device class detection and custom size for the cells or number of rows or even randomize
-         rows/columns in large iPad devices
+         rows/columns in large iPad devices etc..
 
          Courtesy from Apple: https://developer.apple.com/videos/play/wwdc2019/215/
          */
 
         return UICollectionViewCompositionalLayout(sectionProvider: { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
-            let isPhone = layoutEnvironment.traitCollection.userInterfaceIdiom == UIUserInterfaceIdiom.phone
+
+            let isCompact = layoutEnvironment.traitCollection.horizontalSizeClass == .compact
+            let itemCount = isCompact ? 1 : 3
+            let itemHeight = isCompact ?
+                UIScreen.main.bounds.width : UIScreen.main.bounds.width / CGFloat(itemCount) + 60
+            let padding: CGFloat = isCompact ? 16 : 24
+            
             let size = NSCollectionLayoutSize(
                 widthDimension: NSCollectionLayoutDimension.fractionalWidth(1),
-                heightDimension: NSCollectionLayoutDimension.absolute(isPhone ? 340 : 280)
+                heightDimension: NSCollectionLayoutDimension.absolute(itemHeight)
             )
             
             let item = NSCollectionLayoutItem(layoutSize: size)
 
-            let itemCount = isPhone ? 1 : 3
-            let padding: CGFloat = isPhone ? 16 : 24
 
-            let group = NSCollectionLayoutGroup.horizontal(layoutSize: size, subitem: item, count: itemCount)
+
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: size,
+                                                           subitem: item,
+                                                           count: itemCount)
             group.interItemSpacing = NSCollectionLayoutSpacing.fixed(padding)
 
             let section = NSCollectionLayoutSection(group: group)
