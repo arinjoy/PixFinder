@@ -44,13 +44,13 @@ enum Theme {
         return UIFontMetrics(forTextStyle: .body).scaledFont(for: titleFont)
     }()
     
-    static let subheadingFont: UIFont = {
-        let titleFont = UIFont(name: "Avenir-HeavyOblique", size: 16) ?? UIFont.systemFont(ofSize: 16, weight: .semibold)
+    static let headingFont: UIFont = {
+        let titleFont = UIFont(name: "Avenir-HeavyOblique", size: 20) ?? UIFont.systemFont(ofSize: 20, weight: .semibold)
         return UIFontMetrics(forTextStyle: .subheadline).scaledFont(for: titleFont)
     }()
     
     static let footnoteFont: UIFont = {
-        let titleFont = UIFont(name: "Avenir", size: 12) ?? UIFont.systemFont(ofSize: 12, weight: .regular)
+        let titleFont = UIFont(name: "Avenir", size: 14) ?? UIFont.systemFont(ofSize: 14, weight: .regular)
         return UIFontMetrics(forTextStyle: .footnote).scaledFont(for: titleFont)
     }()
     

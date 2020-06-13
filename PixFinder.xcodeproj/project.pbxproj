@@ -11,7 +11,7 @@
 		0E0C37B92494F369006D92CF /* AccessibilityIdentifers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0C37B82494F369006D92CF /* AccessibilityIdentifers.swift */; };
 		0E0C37BC2495005A006D92CF /* LocalizationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0C37BB2495005A006D92CF /* LocalizationKeys.swift */; };
 		0E0C37BE249500B5006D92CF /* PixFinder+StringKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0C37BD249500B5006D92CF /* PixFinder+StringKeys.swift */; };
-		0E0C37C0249502B0006D92CF /* PixFinder.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0E0C37BF249502B0006D92CF /* PixFinder.strings */; };
+		0ECBB9762495195100C2BE93 /* PixFinder.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0ECBB9782495195100C2BE93 /* PixFinder.strings */; };
 		9144B71724906251009B01B8 /* ApplicationFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9144B71624906251009B01B8 /* ApplicationFlowCoordinator.swift */; };
 		9144B7192490629B009B01B8 /* FlowCoordinator+DependencyProviders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9144B7182490629B009B01B8 /* FlowCoordinator+DependencyProviders.swift */; };
 		9144B71B249062E9009B01B8 /* PhotoSearchFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9144B71A249062E9009B01B8 /* PhotoSearchFlowCoordinator.swift */; };
@@ -68,7 +68,9 @@
 		0E0C37B82494F369006D92CF /* AccessibilityIdentifers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityIdentifers.swift; sourceTree = "<group>"; };
 		0E0C37BB2495005A006D92CF /* LocalizationKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationKeys.swift; sourceTree = "<group>"; };
 		0E0C37BD249500B5006D92CF /* PixFinder+StringKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PixFinder+StringKeys.swift"; sourceTree = "<group>"; };
-		0E0C37BF249502B0006D92CF /* PixFinder.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = PixFinder.strings; sourceTree = "<group>"; };
+		0ECBB9772495195100C2BE93 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/PixFinder.strings; sourceTree = "<group>"; };
+		0ECBB979249519E800C2BE93 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/PixFinder.strings; sourceTree = "<group>"; };
+		0ECBB97B24951A0000C2BE93 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/PixFinder.strings; sourceTree = "<group>"; };
 		9144B71624906251009B01B8 /* ApplicationFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationFlowCoordinator.swift; sourceTree = "<group>"; };
 		9144B7182490629B009B01B8 /* FlowCoordinator+DependencyProviders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FlowCoordinator+DependencyProviders.swift"; sourceTree = "<group>"; };
 		9144B71A249062E9009B01B8 /* PhotoSearchFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSearchFlowCoordinator.swift; sourceTree = "<group>"; };
@@ -145,7 +147,7 @@
 			children = (
 				0E0C37BB2495005A006D92CF /* LocalizationKeys.swift */,
 				0E0C37BD249500B5006D92CF /* PixFinder+StringKeys.swift */,
-				0E0C37BF249502B0006D92CF /* PixFinder.strings */,
+				0ECBB9782495195100C2BE93 /* PixFinder.strings */,
 			);
 			path = Localization;
 			sourceTree = "<group>";
@@ -426,6 +428,8 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
+				fr,
 			);
 			mainGroup = 91EA3FEE249058A000AAA4B2;
 			productRefGroup = 91EA3FF8249058A000AAA4B2 /* Products */;
@@ -445,7 +449,7 @@
 			files = (
 				91FECB5B249266FF000E2884 /* SearchPlaceholderViewController.xib in Resources */,
 				91EA4007249058A400AAA4B2 /* LaunchScreen.storyboard in Resources */,
-				0E0C37C0249502B0006D92CF /* PixFinder.strings in Resources */,
+				0ECBB9762495195100C2BE93 /* PixFinder.strings in Resources */,
 				9144B73E24907E92009B01B8 /* PhotoCollectionViewCell.xib in Resources */,
 				91EA4004249058A400AAA4B2 /* Assets.xcassets in Resources */,
 				91EA4002249058A000AAA4B2 /* Main.storyboard in Resources */,
@@ -525,6 +529,16 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		0ECBB9782495195100C2BE93 /* PixFinder.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0ECBB9772495195100C2BE93 /* en */,
+				0ECBB979249519E800C2BE93 /* es */,
+				0ECBB97B24951A0000C2BE93 /* fr */,
+			);
+			name = PixFinder.strings;
+			sourceTree = "<group>";
+		};
 		91EA4000249058A000AAA4B2 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -548,6 +562,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -608,6 +623,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

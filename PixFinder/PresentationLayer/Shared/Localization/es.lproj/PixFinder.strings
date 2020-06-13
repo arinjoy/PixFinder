@@ -1,0 +1,27 @@
+/* 
+  PixFinder.strings
+  PixFinder
+
+  Created by Arinjoy Biswas on 13/6/20.
+  Copyright © 2020 Arinjoy Biswas. All rights reserved.
+*/
+
+"photoSearch.nav.title" = "Buscador de fotos";
+
+"photoSearch.placeholder.title" = "Busca una foto";
+"photoSearch.noResults.title" = "No se han encontrado resultados";
+"photoSearch.noResults.message" = "Intente nuevamente con otras palabras clave.";
+
+"error.generic.title" = "No se pueden cargar los resultados de búsqueda";
+"error.generic.message" = "
+Parece que podría haber algún problema técnico. Inténtalo de nuevo.";
+"error.network.message" = "Parece que estás desconectado. Conéctese a internet a través de WiFi o red móvil";
+
+"userName.prefix" = "Por: ";
+"tags.prefix" = "Con etiquetas ";
+"likes.count.suffix" = " gustos";
+"comments.count.suffix" = " comentarios";
+"favourites.count.suffix" = " favoritos";
+"downloads.count.suffix" = " veces descargadas";
+
+"photo.cell.hint" = "Toca dos veces para ver detalles";

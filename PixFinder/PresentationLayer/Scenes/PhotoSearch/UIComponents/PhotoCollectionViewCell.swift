@@ -126,7 +126,7 @@ final class PhotoCollectionViewCell: UICollectionViewCell, NibProvidable, Reusab
         }
 
         byUserPrefixLabel.font = Theme.bodyFont
-        userNameLabel.font = Theme.subheadingFont
+        userNameLabel.font = Theme.headingFont
         userNameLabel.lineBreakMode = .byTruncatingTail
         
         tagsLabel.font = Theme.bodyFont
