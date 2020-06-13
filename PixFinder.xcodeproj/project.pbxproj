@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E0C37B72494F28D006D92CF /* UIAccessibility+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0C37B62494F28D006D92CF /* UIAccessibility+Helpers.swift */; };
+		0E0C37B92494F369006D92CF /* AccessibilityIdentifers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0C37B82494F369006D92CF /* AccessibilityIdentifers.swift */; };
 		9144B71724906251009B01B8 /* ApplicationFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9144B71624906251009B01B8 /* ApplicationFlowCoordinator.swift */; };
 		9144B7192490629B009B01B8 /* FlowCoordinator+DependencyProviders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9144B7182490629B009B01B8 /* FlowCoordinator+DependencyProviders.swift */; };
 		9144B71B249062E9009B01B8 /* PhotoSearchFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9144B71A249062E9009B01B8 /* PhotoSearchFlowCoordinator.swift */; };
@@ -59,6 +61,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E0C37B62494F28D006D92CF /* UIAccessibility+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAccessibility+Helpers.swift"; sourceTree = "<group>"; };
+		0E0C37B82494F369006D92CF /* AccessibilityIdentifers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityIdentifers.swift; sourceTree = "<group>"; };
 		9144B71624906251009B01B8 /* ApplicationFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationFlowCoordinator.swift; sourceTree = "<group>"; };
 		9144B7182490629B009B01B8 /* FlowCoordinator+DependencyProviders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FlowCoordinator+DependencyProviders.swift"; sourceTree = "<group>"; };
 		9144B71A249062E9009B01B8 /* PhotoSearchFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSearchFlowCoordinator.swift; sourceTree = "<group>"; };
@@ -122,6 +126,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E0C37B52494F25E006D92CF /* Accessibility */ = {
+			isa = PBXGroup;
+			children = (
+				0E0C37B62494F28D006D92CF /* UIAccessibility+Helpers.swift */,
+			);
+			path = Accessibility;
+			sourceTree = "<group>";
+		};
 		9144B71E24906580009B01B8 /* FlowCoordinator */ = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +150,7 @@
 			children = (
 				91FECB5124926120000E2884 /* SearchPlaceholder */,
 				9144B72024906641009B01B8 /* PhotoSearch */,
+				0E0C37B82494F369006D92CF /* AccessibilityIdentifers.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -219,6 +232,7 @@
 		91517486249352F7001101A8 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				0E0C37B52494F25E006D92CF /* Accessibility */,
 				915341D02491889D0078AAAA /* UI+Utils */,
 				9151748724935301001101A8 /* Theme */,
 			);
@@ -438,6 +452,7 @@
 				915174892493530E001101A8 /* Theme.swift in Sources */,
 				9144B73624906F10009B01B8 /* ApiConstants.swift in Sources */,
 				9144B73224906B6E009B01B8 /* Photos.swift in Sources */,
+				0E0C37B72494F28D006D92CF /* UIAccessibility+Helpers.swift in Sources */,
 				9144B72624906893009B01B8 /* NetworkServiceType.swift in Sources */,
 				9144B74024907EEE009B01B8 /* UICollectionView+Common.swift in Sources */,
 				91EA3FFF249058A000AAA4B2 /* PhotoSearchViewController.swift in Sources */,
@@ -462,6 +477,7 @@
 				9144B71B249062E9009B01B8 /* PhotoSearchFlowCoordinator.swift in Sources */,
 				91517499249440E0001101A8 /* UI+Shadow.swift in Sources */,
 				915341CA249109BF0078AAAA /* PhotoViewModel.swift in Sources */,
+				0E0C37B92494F369006D92CF /* AccessibilityIdentifers.swift in Sources */,
 				9144B7192490629B009B01B8 /* FlowCoordinator+DependencyProviders.swift in Sources */,
 				91FECB5D249266FF000E2884 /* SearchPlaceholderViewModel.swift in Sources */,
 				9144B71D249063FD009B01B8 /* ApplicationComponentsFactory.swift in Sources */,

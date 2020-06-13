@@ -17,11 +17,12 @@ final class SearchPlaceholderViewController: UIViewController {
     @IBOutlet private weak var descriptionLabel: UILabel!
 
     // MARK: - Lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         applyStyles()
+        configureAccessibility()
     }
 
     // MARK: - Public
@@ -59,5 +60,17 @@ final class SearchPlaceholderViewController: UIViewController {
 
         titleLabel.font = Theme.titleFont
         descriptionLabel.font = Theme.bodyFont
+    }
+    
+    private func configureAccessibility() {
+        view.accessibilityIdentifier = AccessibilityIdentifiers.SearchPlaceholder.rootViewId
+        titleLabel.accessibilityIdentifier = AccessibilityIdentifiers.SearchPlaceholder.titleLabelId
+        descriptionLabel.accessibilityIdentifier = AccessibilityIdentifiers.SearchPlaceholder.descriptionLabelId
+        
+        titleLabel.accessibilityTraits = .header
+        descriptionLabel.accessibilityTraits = .staticText
+        
+        imageView.isAccessibilityElement = true
+        imageView.accessibilityTraits = .image
     }
 }

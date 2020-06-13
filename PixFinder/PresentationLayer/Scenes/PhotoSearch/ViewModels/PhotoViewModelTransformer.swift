@@ -31,6 +31,20 @@ struct PhotoViewModelTransformer {
         else {
             return nil
         }
+        
+        let accessibility = AccessibilityConfiguration(
+            identifier: AccessibilityIdentifiers.PhotoSearch.cellId + ".\(photo.id)",
+            label: UIAccessibility.createCombinedAccessibilityLabel(
+                from: ["Photo by \(photo.postedByUserName)",
+                       "With tags \(photo.tags)",
+                       "\(photo.likesCount) likes",
+                       "\(photo.commentsCount) comments",
+                       "\(photo.favouritesCount) favourites",
+                       "\(photo.totalDownloads) times downloaded",
+                       ]),
+            hint: "Double tap to see details",
+            traits: .button)
+        
         return PhotoViewModel(id: photo.id,
                               tags: photo.tags,
                               pageUrl: pageUrl,
@@ -45,7 +59,8 @@ struct PhotoViewModelTransformer {
                               comments: photo.commentsCount.roundedStringified,
                               postedByUser: PostedByUser(name: photo.postedByUserName,
                                                          avatarUrl: postedByUserAvatarUrl),
-                              userAvatarImage: userAvatarImageLoader(postedByUserAvatarUrl))
+                              userAvatarImage: userAvatarImageLoader(postedByUserAvatarUrl),
+                              accessibility: accessibility)
     }
     
 }

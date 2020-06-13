@@ -22,6 +22,7 @@ final class PhotoSearchViewController: UIViewController {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.tintColor = Theme.tintColor
+        searchController.searchBar.searchTextField.accessibilityIdentifier = AccessibilityIdentifiers.PhotoSearch.searchTextFieldId
         searchController.searchBar.delegate = self
         return searchController
     }()
@@ -58,9 +59,10 @@ final class PhotoSearchViewController: UIViewController {
         super.viewDidLoad()
 
         configureUI()
+        configureAccessibility()
         applyStyles()
 
-        // Inject the placeholder view at start to prompt for search
+        // Inject the placeholder view at start and prompt for search
         add(searchPlaceholderViewController)
         searchPlaceholderViewController.showStartSearch()
 
@@ -76,11 +78,10 @@ final class PhotoSearchViewController: UIViewController {
     }
 
     // MARK: - Private Helpers
-
+    
     private func configureUI() {
         definesPresentationContext = true
         title = NSLocalizedString("Pixabay photos", comment: "Pixabay photos")
-        applyStyles()
 
         collectionView.registerNib(cellClass: PhotoCollectionViewCell.self)
         collectionView.collectionViewLayout = customPhotoGridLayout()
@@ -89,7 +90,6 @@ final class PhotoSearchViewController: UIViewController {
 
         navigationItem.searchController = searchController
         searchController.isActive = true
-
     }
 
     private func bind(to viewModel: PhotoSearchViewModelType) {
@@ -103,7 +103,8 @@ final class PhotoSearchViewController: UIViewController {
 
         let output = viewModel.transform(input: input)
 
-        output.receive(on: Scheduler.main)
+        output
+            .receive(on: Scheduler.main)
             .sink(receiveValue: { [weak self] state in
                 self?.render(state)
             }).store(in: &cancellables)
@@ -158,18 +159,13 @@ final class PhotoSearchViewController: UIViewController {
             
             let size = NSCollectionLayoutSize(
                 widthDimension: NSCollectionLayoutDimension.fractionalWidth(1),
-                heightDimension: NSCollectionLayoutDimension.absolute(itemHeight)
-            )
-            
+                heightDimension: NSCollectionLayoutDimension.absolute(itemHeight))
             let item = NSCollectionLayoutItem(layoutSize: size)
-
-
-
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: size,
                                                            subitem: item,
                                                            count: itemCount)
             group.interItemSpacing = NSCollectionLayoutSpacing.fixed(padding)
-
+            
             let section = NSCollectionLayoutSection(group: group)
             section.contentInsets = NSDirectionalEdgeInsets(top: padding,
                                                             leading: padding,
@@ -185,6 +181,11 @@ final class PhotoSearchViewController: UIViewController {
         collectionView.backgroundColor = Theme.secondaryBackgroundColor
         loadingView.backgroundColor = Theme.secondaryBackgroundColor
         loadingActivityIndicator.color = Theme.tintColor
+    }
+    
+    private func configureAccessibility() {
+        view.accessibilityIdentifier = AccessibilityIdentifiers.PhotoSearch.rootViewId
+        collectionView.accessibilityIdentifier = AccessibilityIdentifiers.PhotoSearch.collectionViewId
     }
 }
 
@@ -264,6 +265,7 @@ extension PhotoSearchViewController {
                 let cell = collectionView.dequeueReusableCell(withClass: PhotoCollectionViewCell.self,
                                                               forIndexPath: indexPath)
                 cell.configure(with: photoViewModel)
+                cell.accessibilityIdentifier = "\(AccessibilityIdentifiers.PhotoSearch.cellId).\(indexPath.row)"
                 return cell
             }
         )

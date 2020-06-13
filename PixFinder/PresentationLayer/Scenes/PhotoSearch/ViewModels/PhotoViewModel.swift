@@ -30,6 +30,8 @@ struct PhotoViewModel {
 
     let postedByUser: PostedByUser
     let userAvatarImage: AnyPublisher<UIImage?, Never>
+    
+    var accessibility: AccessibilityConfiguration?
 
     init(id: Int,
          tags: String,
@@ -42,7 +44,8 @@ struct PhotoViewModel {
          likes: String,
          comments: String,
          postedByUser: PostedByUser,
-         userAvatarImage: AnyPublisher<UIImage?, Never>
+         userAvatarImage: AnyPublisher<UIImage?, Never>,
+         accessibility: AccessibilityConfiguration? = nil
     ) {
         self.id = id
         self.tags = tags
@@ -59,6 +62,8 @@ struct PhotoViewModel {
 
         self.postedByUser = postedByUser
         self.userAvatarImage = userAvatarImage
+        
+        self.accessibility = accessibility
     }
 }
 

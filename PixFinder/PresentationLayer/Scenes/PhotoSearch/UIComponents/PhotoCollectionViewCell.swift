@@ -77,9 +77,12 @@ final class PhotoCollectionViewCell: UICollectionViewCell, NibProvidable, Reusab
             .sink { [unowned self] image in
                 self.showUserAvatarImage(image: image)
             }
+        
+        containerView.isAccessibilityElement = true
+        viewModel.accessibility?.apply(to: containerView)
     }
 
-     func showMainImage(image: UIImage?) {
+    func showMainImage(image: UIImage?) {
         cancelMainImageLoading()
 
         UIView.transition(
@@ -91,7 +94,7 @@ final class PhotoCollectionViewCell: UICollectionViewCell, NibProvidable, Reusab
             })
     }
 
-     func showUserAvatarImage(image: UIImage?) {
+    func showUserAvatarImage(image: UIImage?) {
         cancelUserAvatarImageLoading()
 
         UIView.transition(
