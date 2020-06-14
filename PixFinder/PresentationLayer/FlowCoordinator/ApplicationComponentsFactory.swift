@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 /// The ApplicationComponentsFactory takes responsibity of creating application components and establishing dependencies between them.
 final class ApplicationComponentsFactory {
@@ -59,6 +60,9 @@ extension ApplicationComponentsFactory: PhotoSearchFlowCoordinatorDependencyProv
     }
     
     func photoDetailsController(_ photo: PhotoViewModel) -> UIViewController {
-        return UIViewController()
+        let photoDetailsView = PhotoDetailsView(imageURL: photo.imageUrls.mediumSize.absoluteString,
+                                           title: photo.postedByUser.name)
+        let hostingVC = UIHostingController(rootView: photoDetailsView)
+        return hostingVC
     }
 }
