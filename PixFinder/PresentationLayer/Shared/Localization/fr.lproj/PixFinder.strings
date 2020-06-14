@@ -14,7 +14,9 @@
 
 "error.generic.title" = "Impossible de charger les résultats de recherche";
 "error.generic.message" = "Il semble qu'il puisse y avoir un problème technique. Veuillez réessayer.";
-"error.network.message" = "On dirait que vous êtes hors ligne. Veuillez vous connecter à Internet via WiFi ou réseau mobile.";
+
+"error.network.title" = "Vous n'êtes pas connecté";
+"error.network.message" = "On dirait que vous n'êtes pas connecté à Internet. Veuillez vous assurer que vous disposez d'un réseau WiFi ou mobile.";
 
 "userName.prefix" = "Par: ";
 "tags.prefix" = "Avec des tags ";

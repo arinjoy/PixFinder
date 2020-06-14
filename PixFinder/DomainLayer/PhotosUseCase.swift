@@ -22,10 +22,10 @@ final class PhotosUseCase: PhotosUseCaseType {
 
     // MARK: - PhotosUseCaseType
 
-    func searchPhotos(with query: String) -> AnyPublisher<Result<[Photo], Error>, Never> {
+    func searchPhotos(with query: String) -> AnyPublisher<Result<[Photo], NetworkError>, Never> {
         return networkService
         .load(Resource<PhotosList>.photos(query: query))
-        .map({ (result: Result<PhotosList, NetworkError>) -> Result<[Photo], Error> in
+        .map({ (result: Result<PhotosList, NetworkError>) -> Result<[Photo], NetworkError> in
             switch result {
             case .success(let photosList): return .success(photosList.photos)
             case .failure(let error): return .failure(error)
@@ -42,7 +42,6 @@ final class PhotosUseCase: PhotosUseCaseType {
             guard let self = self else { return .just(nil) }
             return self.imageLoaderService.loadImage(from: url)
         }
-        .subscribe(on: Scheduler.background)
         .receive(on: Scheduler.main)
         .share()
         .eraseToAnyPublisher()

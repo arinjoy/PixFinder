@@ -30,10 +30,17 @@ struct SearchPlaceholderViewModel {
         return SearchPlaceholderViewModel(image: image, title: title, description: description)
     }
 
-    static var dataLoadingError: SearchPlaceholderViewModel {
+    static var genericError: SearchPlaceholderViewModel {
         let title = StringKeys.PixFinder.genericErrorTitle.localized()
         let description = StringKeys.PixFinder.genericErrorMessage.localized()
         let image = UIImage(named: "error-triangle") ?? UIImage()
+        return SearchPlaceholderViewModel(image: image, title: title, description: description)
+    }
+    
+    static var connectivityError: SearchPlaceholderViewModel {
+        let title = StringKeys.PixFinder.netowrkErrorTitle.localized()
+        let description = StringKeys.PixFinder.nerworkErrorMessage.localized()
+        let image = UIImage(named: "wifi-disconnected") ?? UIImage()
         return SearchPlaceholderViewModel(image: image, title: title, description: description)
     }
 }

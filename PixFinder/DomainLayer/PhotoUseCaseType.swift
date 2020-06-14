@@ -13,7 +13,7 @@ import UIKit.UIImage
 protocol PhotosUseCaseType {
 
     /// Searches for phtotos for a given query string
-    func searchPhotos(with query: String) -> AnyPublisher<Result<[Photo], Error>, Never>
+    func searchPhotos(with query: String) -> AnyPublisher<Result<[Photo], NetworkError>, Never>
 
     // Loads an image for the given url
     func loadImage(for url: URL) -> AnyPublisher<UIImage?, Never>

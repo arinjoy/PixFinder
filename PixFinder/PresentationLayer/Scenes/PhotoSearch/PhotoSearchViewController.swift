@@ -115,24 +115,40 @@ final class PhotoSearchViewController: UIViewController {
         case .idle:
             searchPlaceholderViewController.view.isHidden = false
             searchPlaceholderViewController.showStartSearch()
+            
             loadingView.isHidden = true
             update(with: [], animate: true)
+        
         case .loading:
             searchPlaceholderViewController.view.isHidden = true
+            
             loadingView.isHidden = false
             update(with: [], animate: true)
+        
         case .noResults:
             searchPlaceholderViewController.view.isHidden = false
             searchPlaceholderViewController.showNoResults()
+            
             loadingView.isHidden = true
             update(with: [], animate: true)
-        case .failure:
+        
+        case .failure(let error):
             searchPlaceholderViewController.view.isHidden = false
-            searchPlaceholderViewController.showDataLoadingError()
+            // Note: Handle more and more custom error cases to tweak the
+            // error message copy if needed
+            switch error {
+            case .networkFailure, .timeout:
+                searchPlaceholderViewController.showConnectivityError()
+            default:
+                searchPlaceholderViewController.showGenericError()
+            }
+
             loadingView.isHidden = true
             update(with: [], animate: true)
+        
         case .success(let photos):
             searchPlaceholderViewController.view.isHidden = true
+            
             loadingView.isHidden = true
             update(with: photos, animate: true)
         }

@@ -65,7 +65,7 @@ enum PhotoSearchState {
     case loading
     case success([PhotoViewModel])
     case noResults
-    case failure(Error)
+    case failure(NetworkError)
 }
 
 extension PhotoSearchState: Equatable {

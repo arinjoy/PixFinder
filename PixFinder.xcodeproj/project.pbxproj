@@ -137,6 +137,7 @@
 		0E0C37B52494F25E006D92CF /* Accessibility */ = {
 			isa = PBXGroup;
 			children = (
+				0E0C37B82494F369006D92CF /* AccessibilityIdentifers.swift */,
 				0E0C37B62494F28D006D92CF /* UIAccessibility+Helpers.swift */,
 			);
 			path = Accessibility;
@@ -168,7 +169,6 @@
 			children = (
 				91FECB5124926120000E2884 /* SearchPlaceholder */,
 				9144B72024906641009B01B8 /* PhotoSearch */,
-				0E0C37B82494F369006D92CF /* AccessibilityIdentifers.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -176,9 +176,9 @@
 		9144B72024906641009B01B8 /* PhotoSearch */ = {
 			isa = PBXGroup;
 			children = (
+				915341C62491084C0078AAAA /* UIComponents */,
 				915341CF24911BCA0078AAAA /* ViewModels */,
 				91EA3FFE249058A000AAA4B2 /* PhotoSearchViewController.swift */,
-				915341C62491084C0078AAAA /* UIComponents */,
 			);
 			path = PhotoSearch;
 			sourceTree = "<group>";

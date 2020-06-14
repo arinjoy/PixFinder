@@ -19,6 +19,7 @@ extension StringKeys {
         
         case genericErrorTitle = "error.generic.title"
         case genericErrorMessage = "error.generic.message"
+        case netowrkErrorTitle = "error.network.title"
         case nerworkErrorMessage = "error.network.message"
         
         case userNamePrefix = "userName.prefix"

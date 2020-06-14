@@ -13,9 +13,10 @@
 "photoSearch.noResults.message" = "Intente nuevamente con otras palabras clave.";
 
 "error.generic.title" = "No se pueden cargar los resultados de búsqueda";
-"error.generic.message" = "
-Parece que podría haber algún problema técnico. Inténtalo de nuevo.";
-"error.network.message" = "Parece que estás desconectado. Conéctese a internet a través de WiFi o red móvil.";
+"error.generic.message" = "Parece que podría haber algún problema técnico. Inténtalo de nuevo.";
+
+"error.network.title" = "Estas fuera de linea";
+"error.network.message" = "Parece que no estás conectado a Internet. Asegúrate de tener WiFi o red móvil.";
 
 "userName.prefix" = "Por: ";
 "tags.prefix" = "Con etiquetas ";

@@ -35,8 +35,12 @@ final class SearchPlaceholderViewController: UIViewController {
         render(viewModel: SearchPlaceholderViewModel.noResults)
     }
 
-    func showDataLoadingError() {
-        render(viewModel: SearchPlaceholderViewModel.dataLoadingError)
+    func showGenericError() {
+        render(viewModel: SearchPlaceholderViewModel.genericError)
+    }
+    
+    func showConnectivityError() {
+        render(viewModel: SearchPlaceholderViewModel.connectivityError)
     }
 
     // MARK: - Private Helpers
@@ -58,6 +62,9 @@ final class SearchPlaceholderViewController: UIViewController {
             label?.adjustsFontForContentSizeCategory = true
         }
 
+        titleLabel.numberOfLines = 0
+        descriptionLabel.numberOfLines = 0
+        
         titleLabel.font = Theme.titleFont
         descriptionLabel.font = Theme.bodyFont
     }

@@ -21,7 +21,7 @@ enum NetworkError: Error {
     /// When netowrk cannot be established
     case networkFailure
     
-    /// When network call has timed out
+    /// When network request has timed out
     case timeout
     
     // MARK: - Server / Authentication
@@ -32,7 +32,7 @@ enum NetworkError: Error {
     /// When service is unaavailable. i.e. 503
     case seviceUnavailable
     
-    /// When API returns rate limited error
+    /// When api returns rate limited error. i.e. 429
     case apiRateLimited
     
     /// When unauthoized due to bad credentials. i.e. 401
