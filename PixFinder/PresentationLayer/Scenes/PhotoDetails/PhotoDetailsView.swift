@@ -37,13 +37,15 @@ struct PhotoDetailsView: View {
 
 // MARK: - Xcode Previews
 
+#if DEBUG
 struct PhotoDetailsView_Preview: PreviewProvider {
         
     static var previews: some View {
-        PhotoDetailsView(withViewModel: PhotoDetailsView_Preview.photoViewModel)
+        PhotoDetailsView(withViewModel: PhotoDetailsView_Preview_Helpers.photoViewModel)
     }
-    
-    // MARK: - Sample Data / Helpers
+}
+
+struct PhotoDetailsView_Preview_Helpers {
     
     static let useCase: PhotosUseCaseType = PhotosUseCase(
         networkService: ServicesProvider.defaultProvider().network,
@@ -67,10 +69,11 @@ struct PhotoDetailsView_Preview: PreviewProvider {
             postedByUserImageUrl: "https://cdn.pixabay.com/user/2015/12/16/17-56-55-832_250x250.jpg"
         ),
         mainImageLoader: { url in
-            PhotoDetailsView_Preview.useCase.loadImage(for: url)
+            PhotoDetailsView_Preview_Helpers.useCase.loadImage(for: url)
         },
         userAvatarImageLoader: { url in
-            PhotoDetailsView_Preview.useCase.loadImage(for: url)
+            PhotoDetailsView_Preview_Helpers.useCase.loadImage(for: url)
         }
     )!
 }
+#endif

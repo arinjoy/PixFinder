@@ -32,8 +32,20 @@ struct PhotoDetailsContainerView: View {
     }
 }
 
+// MARK: - Xcode Previews
+
+#if DEBUG
 struct PhotoDetailsContainerView_Previews: PreviewProvider {
     static var previews: some View {
-        
+        Group {
+            PhotoDetailsContainerView(PhotoDetailsView_Preview_Helpers.photoViewModel)
+                .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
+                .previewDisplayName("iPhone SE")
+
+           PhotoDetailsContainerView(PhotoDetailsView_Preview_Helpers.photoViewModel)
+                .previewDevice(PreviewDevice(rawValue: "iPhone 11 Pro"))
+                .previewDisplayName("iPhone 11 Pro")
+        }
     }
 }
+#endif
