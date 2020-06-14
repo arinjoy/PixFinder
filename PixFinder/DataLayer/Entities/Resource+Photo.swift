@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit.UIDevice
 
 extension Resource {
 
@@ -15,7 +16,7 @@ extension Resource {
         let parameters: [String : CustomStringConvertible] = [
             "key": ApiConstants.apiKey,
             "q": query,
-            "lang": Locale.preferredLanguages[0],
+            "lang": UIDevice.current.languageCode(),
             "pretty": true,
             "per_page": 100 // TODO: make it configurable by passing in the method with query
             ]
