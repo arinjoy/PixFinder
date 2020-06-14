@@ -30,7 +30,6 @@ struct PhotoDetailsView: View {
             }
         }
         .edgesIgnoringSafeArea(.all)
-        .background(Color(Theme.secondaryBackgroundColor))
         .navigationBarTitle(Text(viewModel.postedByUser.name), displayMode: .inline)
     }
 }
@@ -48,6 +47,7 @@ struct PhotoDetailsView_Preview: PreviewProvider {
             PhotoDetailsView(withViewModel: PhotoDetailsView_Preview_Helpers.photoViewModel)
                 .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
                 .previewDisplayName("iPhone 8")
+                .environment(\.colorScheme, .dark)
         }
     }
 }

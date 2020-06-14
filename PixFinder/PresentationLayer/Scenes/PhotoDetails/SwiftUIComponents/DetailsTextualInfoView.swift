@@ -112,6 +112,9 @@ struct DetailsTextualInfoView: View {
                 .accessibility(label: Text(viewModel.downloadsCountText))
             }
             
+            // Dummy spacer via empty text. Can be doen via EMpty View
+            Text("")
+            
             Button(action: {
                 self.safariLinkPage = LinkPage(url: self.viewModel.pageUrl)
             }) {
