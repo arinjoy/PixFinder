@@ -17,9 +17,42 @@ protocol NetworkServiceType: AnyObject {
 
 /// Defines the Network service errors.
 enum NetworkError: Error {
-    case invalidRequest
-    case invalidResponse
-    case dataLoadingError(statusCode: Int, data: Data)
+    
+    /// When netowrk cannot be established
+    case networkFailure
+    
+    /// When network call has timed out
+    case timeout
+    
+    // MARK: - Server / Authentication
+    
+    /// When returns 5xx family of server errors
+    case server
+    
+    /// When service is unaavailable. i.e. 503
+    case seviceUnavailable
+    
+    /// When unauthoized due to bad credentials. i.e. 401
+    case unAuthorized
+    
+    /// When access is forbidden i.e. 403
+    case forbidden
+    
+    /// When api service is not found. i.e. 404
+    case notFound
+    
+    // MARK: - Misc
+    
+    /// When api does not return data
+    case noDataFound
+    
+//    /// Data loadding
+//    case dataLoadingError(statusCode: Int, data: Data)
+    
+    /// When JSON data mapping/conversion error
     case jsonDecodingError(error: Error)
+    
+    /// Any unknown error happens
+    case unknown
 }
 

@@ -17,7 +17,16 @@ class ServicesProvider {
     let imageLoader: ImageLoaderServiceType
 
     static func defaultProvider() -> ServicesProvider {
-        let network = NetworkService()
+        let sessionConfig = URLSessionConfiguration.ephemeral
+        
+        // Set 10 seconds timeout for the request,
+        // otherwise defaults to 60 seconds which is too long.
+        // This helps in network disconnection and error testing.
+        sessionConfig.timeoutIntervalForRequest = 10
+        sessionConfig.timeoutIntervalForResource = 10
+        
+        let network = NetworkService(with: sessionConfig)
+        
         let imageLoader = ImageLoaderService()
         return ServicesProvider(network: network, imageLoader: imageLoader)
     }
