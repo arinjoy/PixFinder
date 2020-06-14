@@ -9,6 +9,10 @@
 import XCTest
 @testable import PixFinder
 
+
+   // TODO: About to write unit tests for all layers
+   // (preffer Qucik/Nimble library for better organisation)
+
 class PixFinderTests: XCTestCase {
 
     override func setUp() {
