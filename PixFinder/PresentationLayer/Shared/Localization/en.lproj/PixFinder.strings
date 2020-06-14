@@ -14,7 +14,7 @@
 
 "error.generic.title" = "Can't load search results";
 "error.generic.message" = "Seems like there might be some technical issue. Please try again.";
-"error.network.message" = "Seems like you're offline. Please connect to internet via WiFi or mobile network";
+"error.network.message" = "Seems like you're offline. Please connect to internet via WiFi or mobile network.";
 
 "userName.prefix" = "By: ";
 "tags.prefix" = "With tags ";

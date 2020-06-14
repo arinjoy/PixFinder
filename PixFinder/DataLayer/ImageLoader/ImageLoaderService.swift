@@ -24,7 +24,7 @@ final class ImageLoaderService: ImageLoaderServiceType {
 
         // Else, load from network and cache if for future usage
         return URLSession.shared.dataTaskPublisher(for: url)
-            .subscribe(on: Scheduler.background)
+            .subscribe(on: DispatchQueue.global(qos: .userInteractive))
             .map { data, response -> UIImage? in
                 return UIImage(data: data)
             }
