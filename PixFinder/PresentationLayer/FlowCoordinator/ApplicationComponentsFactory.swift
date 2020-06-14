@@ -9,9 +9,9 @@
 import UIKit
 import SwiftUI
 
-/// The ApplicationComponentsFactory takes responsibity of creating application components and establishing dependencies between them.
+/// The ApplicationComponentsFactory takes responsibity of creating application components and
+/// establishing dependencies between them.
 final class ApplicationComponentsFactory {
-    // TODO: Add use case & service providers here
 
     private lazy var useCase: PhotosUseCaseType = {
         return PhotosUseCase(
@@ -59,9 +59,8 @@ extension ApplicationComponentsFactory: PhotoSearchFlowCoordinatorDependencyProv
         return photoSearchVC
     }
     
-    func photoDetailsController(_ photo: PhotoViewModel) -> UIViewController {
-        let photoDetailsView = PhotoDetailsView(imageURL: photo.imageUrls.mediumSize.absoluteString,
-                                           title: photo.postedByUser.name)
+    func photoDetailsController(_ viewModel: PhotoViewModel) -> UIViewController {
+        let photoDetailsView = PhotoDetailsView(withViewModel: viewModel)
         let hostingVC = UIHostingController(rootView: photoDetailsView)
         return hostingVC
     }

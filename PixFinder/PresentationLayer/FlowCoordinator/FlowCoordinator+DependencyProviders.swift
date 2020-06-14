@@ -22,5 +22,5 @@ protocol PhotoSearchFlowCoordinatorDependencyProvider: class {
     func photoSearchController(router: PhotoSearchRouting) -> UIViewController
     
     /// Creates UIViewController to show the details of a photo
-    func photoDetailsController(_ photo: PhotoViewModel) -> UIViewController
+    func photoDetailsController(_ viewModel: PhotoViewModel) -> UIViewController
 }

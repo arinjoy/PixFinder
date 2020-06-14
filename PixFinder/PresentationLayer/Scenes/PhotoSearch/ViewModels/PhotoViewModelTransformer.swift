@@ -45,7 +45,7 @@ struct PhotoViewModelTransformer {
             hint: "Double tap to see details",
             traits: .button)
         
-        return PhotoViewModel(id: photo.id,
+        let shit = PhotoViewModel(id: photo.id,
                               tags: photo.tags,
                               pageUrl: pageUrl,
                               imageUrls: ImageURLTuple(preview: previewUrl,
@@ -61,6 +61,9 @@ struct PhotoViewModelTransformer {
                                                          avatarUrl: postedByUserAvatarUrl),
                               userAvatarImage: userAvatarImageLoader(postedByUserAvatarUrl),
                               accessibility: accessibility)
+        
+        print(shit)
+        return shit
     }
     
 }
