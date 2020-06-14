@@ -197,6 +197,14 @@ final class PhotoSearchViewController: UIViewController {
         collectionView.backgroundColor = Theme.secondaryBackgroundColor
         loadingView.backgroundColor = Theme.secondaryBackgroundColor
         loadingActivityIndicator.color = Theme.tintColor
+        
+        navigationController?.navigationBar.tintColor = Theme.tintColor
+        
+        // To hide the < Back button text in the next details page that gets pushed in
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "",
+                                                           style: .plain,
+                                                           target: nil,
+                                                           action: nil)
     }
     
     private func configureAccessibility() {

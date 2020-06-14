@@ -9,6 +9,28 @@
 import SwiftUI
 import Combine
 
+extension PhotoViewModel {
+    var viewsCountText: String {
+        self.views + StringKeys.PixFinder.viewsCountSuffix.localized()
+    }
+
+    var likesCountText: String {
+        self.likes + StringKeys.PixFinder.likesCountSuffix.localized()
+    }
+    
+    var commentsCountText: String {
+        self.comments + StringKeys.PixFinder.commentsCountSuffix.localized()
+    }
+    
+    var favouritesCountText: String {
+        self.favourites + StringKeys.PixFinder.favouritesCountSuffix.localized()
+    }
+    
+    var downloadsCountText: String {
+        self.downloads + StringKeys.PixFinder.downloadsCountSuffix.localized()
+    }
+}
+
 struct DetailsTextualInfoView: View {
     
     @State var safariLinkPage: LinkPage?
@@ -26,66 +48,68 @@ struct DetailsTextualInfoView: View {
             Text(StringKeys.PixFinder.userNamePrefix.localized() + viewModel.postedByUser.name)
                    .lineLimit(1)
                    .font(Font(Theme.headingFont))
-               
+            
             Text(StringKeys.PixFinder.tagsPrefix.localized() + viewModel.tags)
                    .lineLimit(2)
                    .font(Font(Theme.titleFont))
                
-               
-            HStack(spacing: 16) {
+            HStack(spacing: 12) {
                 Image("eye")
                    .resizable()
                    .aspectRatio(contentMode: .fit)
                    .frame(width: 36, height: 36)
-                
-                Text(viewModel.views + StringKeys.PixFinder.viewsCountSuffix.localized())
+                Text(viewModel.viewsCountText)
                     .font(Font(Theme.bodyFont))
             }
+            .accessibilityElement()
+            .accessibility(label: Text(viewModel.viewsCountText))
                
             HStack(spacing: 24) {
-                
-                HStack(spacing: 16) {
+                HStack(spacing: 12) {
                    Image("like-up")
                        .resizable()
                        .aspectRatio(contentMode: .fit)
                        .frame(width: 32, height: 32)
-                       
-                   Text(viewModel.likes + StringKeys.PixFinder.likesCountSuffix.localized())
+                   Text(viewModel.likesCountText)
                        .font(Font(Theme.bodyFont))
                 }
+                .accessibilityElement()
+                .accessibility(label: Text(viewModel.likesCountText))
                    
-               HStack(spacing: 16) {
+               HStack(spacing: 12) {
                    Image("speech-bubble")
                        .resizable()
                        .aspectRatio(contentMode: .fit)
                        .frame(width: 28)
-                       
-                   Text(viewModel.comments + StringKeys.PixFinder.commentsCountSuffix.localized())
+                   Text(viewModel.commentsCountText)
                        .font(Font(Theme.bodyFont))
                 }
+                .accessibilityElement()
+                .accessibility(label: Text(viewModel.commentsCountText))
             }
                
             HStack(spacing: 24) {
-               
-                HStack(spacing: 16) {
-                   Image("heart-love")
+                HStack(spacing: 12) {
+                    Image("heart-love")
                        .resizable()
                        .aspectRatio(contentMode: .fit)
                        .frame(width: 30, height: 30)
-           
-                   Text(viewModel.favourites + StringKeys.PixFinder.favouritesCountSuffix.localized())
+                    Text(viewModel.favouritesCountText)
                        .font(Font(Theme.bodyFont))
-                   }
+                }
+                .accessibilityElement()
+                .accessibility(label: Text(viewModel.favouritesCountText))
                 
-                HStack(spacing: 16) {
+                HStack(spacing: 12) {
                    Image("download")
                        .resizable()
                        .aspectRatio(contentMode: .fit)
                        .frame(width: 30, height: 30)
-                       
-                   Text(viewModel.downloads + StringKeys.PixFinder.downloadsCountSuffix.localized())
+                   Text(viewModel.downloadsCountText)
                        .font(Font(Theme.bodyFont))
                 }
+                .accessibilityElement()
+                .accessibility(label: Text(viewModel.downloadsCountText))
             }
             
             Button(action: {
@@ -99,16 +123,18 @@ struct DetailsTextualInfoView: View {
                     .background(Color(Theme.tertiaryBackgroundColor))
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                     .overlay(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color(Theme.tertiaryBackgroundColor), lineWidth: 1))
-                    .shadow(color: Color(Theme.tertiaryBackgroundColor), radius: 8, x: 0, y: 0)
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color(Theme.tertiaryBackgroundColor),
+                                    lineWidth: 1)
+                     )
+                    .shadow(color: Color(Theme.tertiaryBackgroundColor),
+                                    radius: 8, x: 0, y: 0)
             }
             .sheet(item: $safariLinkPage) { linkPage in
                 SafariView(linkPage: linkPage)
             }
             
             Spacer()
-            
         }
         .foregroundColor(Color(Theme.primaryTextColor))
         .padding(20)

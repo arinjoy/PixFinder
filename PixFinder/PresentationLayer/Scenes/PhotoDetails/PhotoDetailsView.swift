@@ -39,9 +39,16 @@ struct PhotoDetailsView: View {
 
 #if DEBUG
 struct PhotoDetailsView_Preview: PreviewProvider {
-        
     static var previews: some View {
-        PhotoDetailsView(withViewModel: PhotoDetailsView_Preview_Helpers.photoViewModel)
+        Group {
+            PhotoDetailsView(withViewModel: PhotoDetailsView_Preview_Helpers.photoViewModel)
+                .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
+                .previewDisplayName("iPhone SE")
+            
+            PhotoDetailsView(withViewModel: PhotoDetailsView_Preview_Helpers.photoViewModel)
+                .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
+                .previewDisplayName("iPhone 8")
+        }
     }
 }
 
