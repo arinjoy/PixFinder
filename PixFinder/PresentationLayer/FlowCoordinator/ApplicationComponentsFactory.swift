@@ -36,8 +36,8 @@ extension ApplicationComponentsFactory: ApplicationFlowCoordinatorDependencyProv
 }
 
 extension ApplicationComponentsFactory: PhotoSearchFlowCoordinatorDependencyProvider {
-    
-    func photoSearchController() -> UIViewController {
+
+    func photoSearchController(router: PhotoSearchRouting) -> UIViewController {
 
         // TODO: Maybe design via the nne ViewController (VC) and it own .xib file to load a VC and avoid
         // storyboard file in multiple VCs are being added and routing/navigating starts happening
@@ -50,9 +50,15 @@ extension ApplicationComponentsFactory: PhotoSearchFlowCoordinatorDependencyProv
             fatalError("`PhotoSearchViewController` could not be constructed out of main storyboard")
         }
 
-        let photoSearchVM = PhotoSearchViewModel(useCase: useCase)
-        photoSearchVC.viewModel = photoSearchVM // TODO: improve this injection logic differently
-
+        let photoSearchVM = PhotoSearchViewModel(useCase: useCase,
+                                                 router: router)
+        
+        // TODO: Improve this VM injection logic differently if possible
+        photoSearchVC.viewModel = photoSearchVM
         return photoSearchVC
+    }
+    
+    func photoDetailsController(_ photo: PhotoViewModel) -> UIViewController {
+        return UIViewController()
     }
 }

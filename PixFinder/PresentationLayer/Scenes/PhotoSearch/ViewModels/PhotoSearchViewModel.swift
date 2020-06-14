@@ -13,7 +13,7 @@ final class PhotoSearchViewModel: PhotoSearchViewModelType {
 
     // MARK: - Private Properties
 
-    /// The latest list of photos being searched
+    /// The latest list of photos being shown as results of the latest search operation
     private var photoList: [PhotoViewModel] = [] {
         didSet {
             // While new photos are being assigned, cancel any existing image loading operations and image store
@@ -32,9 +32,12 @@ final class PhotoSearchViewModel: PhotoSearchViewModelType {
     // MARK: - Dependency
     
     private let useCase: PhotosUseCaseType
+    private weak var router: PhotoSearchRouting?
 
-    init(useCase: PhotosUseCaseType) {
+    init(useCase: PhotosUseCaseType,
+         router: PhotoSearchRouting) {
         self.useCase = useCase
+        self.router = router
     }
 
     // MARK: - PhotoSearchViewModelType
@@ -47,12 +50,10 @@ final class PhotoSearchViewModel: PhotoSearchViewModelType {
         cancellables.forEach { $0.cancel() }
         cancellables.removeAll()
 
-        // TODO: for future feature fo detail page navigation
         input.selection
-            .sink(receiveValue: { photoId in
-                // Note: Handle navigation of the detail screen of the photo (when this feature is developed in future)
-                // Potenially via `Router` or `Navigator` protocol abstraction for unit testing of routing logic
-                print("Tapped photo:", photoId)
+            .sink(receiveValue: { [weak self] photoViewModel in
+                // Navigate to detail page via router
+                self?.router?.showDetails(forPhoto: photoViewModel)
             })
             .store(in: &cancellables)
 

@@ -12,6 +12,7 @@
 		0E0C37BC2495005A006D92CF /* LocalizationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0C37BB2495005A006D92CF /* LocalizationKeys.swift */; };
 		0E0C37BE249500B5006D92CF /* PixFinder+StringKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0C37BD249500B5006D92CF /* PixFinder+StringKeys.swift */; };
 		0E8F8A742495DB89009BC9C9 /* UIDevice+Localizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8F8A732495DB89009BC9C9 /* UIDevice+Localizations.swift */; };
+		0E8F8A762495E347009BC9C9 /* PhotoSearchRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8F8A752495E347009BC9C9 /* PhotoSearchRouting.swift */; };
 		0ECBB9762495195100C2BE93 /* PixFinder.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0ECBB9782495195100C2BE93 /* PixFinder.strings */; };
 		9144B71724906251009B01B8 /* ApplicationFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9144B71624906251009B01B8 /* ApplicationFlowCoordinator.swift */; };
 		9144B7192490629B009B01B8 /* FlowCoordinator+DependencyProviders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9144B7182490629B009B01B8 /* FlowCoordinator+DependencyProviders.swift */; };
@@ -70,6 +71,7 @@
 		0E0C37BB2495005A006D92CF /* LocalizationKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationKeys.swift; sourceTree = "<group>"; };
 		0E0C37BD249500B5006D92CF /* PixFinder+StringKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PixFinder+StringKeys.swift"; sourceTree = "<group>"; };
 		0E8F8A732495DB89009BC9C9 /* UIDevice+Localizations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Localizations.swift"; sourceTree = "<group>"; };
+		0E8F8A752495E347009BC9C9 /* PhotoSearchRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSearchRouting.swift; sourceTree = "<group>"; };
 		0ECBB9772495195100C2BE93 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/PixFinder.strings; sourceTree = "<group>"; };
 		0ECBB979249519E800C2BE93 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/PixFinder.strings; sourceTree = "<group>"; };
 		0ECBB97B24951A0000C2BE93 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/PixFinder.strings; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				915341C62491084C0078AAAA /* UIComponents */,
 				915341CF24911BCA0078AAAA /* ViewModels */,
 				91EA3FFE249058A000AAA4B2 /* PhotoSearchViewController.swift */,
+				0E8F8A752495E347009BC9C9 /* PhotoSearchRouting.swift */,
 			);
 			path = PhotoSearch;
 			sourceTree = "<group>";
@@ -504,6 +507,7 @@
 				9144B72424906864009B01B8 /* ServicesProvider.swift in Sources */,
 				9144B71B249062E9009B01B8 /* PhotoSearchFlowCoordinator.swift in Sources */,
 				91517499249440E0001101A8 /* UI+Shadow.swift in Sources */,
+				0E8F8A762495E347009BC9C9 /* PhotoSearchRouting.swift in Sources */,
 				915341CA249109BF0078AAAA /* PhotoViewModel.swift in Sources */,
 				0E0C37B92494F369006D92CF /* AccessibilityIdentifers.swift in Sources */,
 				9144B7192490629B009B01B8 /* FlowCoordinator+DependencyProviders.swift in Sources */,

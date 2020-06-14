@@ -19,12 +19,12 @@ struct PhotoSearchViewModelInput {
     let search: AnyPublisher<String, Never>
 
     /// Called when the user selected an item from the list
-    let selection: AnyPublisher<Int, Never>
+    let selection: AnyPublisher<PhotoViewModel, Never>
 
     init(
         appear: AnyPublisher<Void, Never>,
         search: AnyPublisher<String, Never>,
-        selection: AnyPublisher<Int, Never>
+        selection: AnyPublisher<PhotoViewModel, Never>
     ) {
         self.appear = appear
         self.search = search
@@ -41,7 +41,7 @@ enum ImageType {
 }
 
 protocol PhotoSearchViewModelType {
-
+    
     func transform(input: PhotoSearchViewModelInput) -> PhotoSearchViewModelOutput
 
     /// A cache/store of images loaded for main photo images

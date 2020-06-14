@@ -39,7 +39,7 @@ final class PhotoSearchViewController: UIViewController {
     
     private let search = PassthroughSubject<String, Never>()
     private let appear = PassthroughSubject<Void, Never>()
-    private let selection = PassthroughSubject<Int, Never>()
+    private let selection = PassthroughSubject<PhotoViewModel, Never>()
 
     private var cancellables: [AnyCancellable] = []
 
@@ -221,8 +221,8 @@ extension PhotoSearchViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let snapshot = dataSource.snapshot()
-        // Send reactive signal as selection is made
-        selection.send(snapshot.itemIdentifiers[indexPath.row].id)
+        // Send reactive signal as selection is made and pass the photo view model being selected
+        selection.send(snapshot.itemIdentifiers[indexPath.row])
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
