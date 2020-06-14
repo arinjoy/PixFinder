@@ -24,11 +24,15 @@ extension StringKeys {
         
         case userNamePrefix = "userName.prefix"
         case tagsPrefix = "tags.prefix"
+        
+        case viewsCountSuffix = "views.count.suffix"
         case likesCountSuffix = "likes.count.suffix"
         case commentsCountSuffix = "comments.count.suffix"
         case favouritesCountSuffix = "favourites.count.suffix"
         case downloadsCountSuffix = "downloads.count.suffix"
         case photoCellHint = "photo.cell.hint"
+        
+        case gotoWebActionTitle = "goto.web.action.title"
 
         // MARK: - LocalizationKeys
         

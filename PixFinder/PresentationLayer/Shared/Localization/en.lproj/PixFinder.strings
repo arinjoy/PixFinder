@@ -19,10 +19,14 @@
 "error.network.message" = "Seems like you're not connected to Internet. Please make sure that you have WiFi or Mobile network.";
 
 "userName.prefix" = "By: ";
-"tags.prefix" = "With tags ";
+"tags.prefix" = "Tags: ";
+
+"views.count.suffix" = " views";
 "likes.count.suffix" = " likes";
 "comments.count.suffix" = " comments";
 "favourites.count.suffix" = " favourites";
-"downloads.count.suffix" = " times downloaded";
+"downloads.count.suffix" = " downloads";
 
 "photo.cell.hint" = "Double tap to see details";
+
+"goto.web.action.title" = "Go to Webpage";

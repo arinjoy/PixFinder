@@ -19,10 +19,14 @@
 "error.network.message" = "On dirait que vous n'êtes pas connecté à Internet. Veuillez vous assurer que vous disposez d'un réseau WiFi ou mobile.";
 
 "userName.prefix" = "Par: ";
-"tags.prefix" = "Avec des tags ";
+"tags.prefix" = "Mots clés: ";
+
+"views.count.suffix" = " vues";
 "likes.count.suffix" = " aime";
 "comments.count.suffix" = "commentaires";
 "favourites.count.suffix" = " favoris";
-"downloads.count.suffix" = " fois téléchargé";
+"downloads.count.suffix" = " téléchargements";
 
 "photo.cell.hint" = "Appuyez deux fois pour voir les détails";
+
+"goto.web.action.title" = "Aller sur le Web";

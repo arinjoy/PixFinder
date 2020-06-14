@@ -19,10 +19,14 @@
 "error.network.message" = "Parece que no estás conectado a Internet. Asegúrate de tener WiFi o red móvil.";
 
 "userName.prefix" = "Por: ";
-"tags.prefix" = "Con etiquetas ";
+"tags.prefix" = "Etiquetas: ";
+
+"views.count.suffix" = " vista";
 "likes.count.suffix" = " gustos";
 "comments.count.suffix" = " comentarios";
 "favourites.count.suffix" = " favoritos";
-"downloads.count.suffix" = " veces descargadas";
+"downloads.count.suffix" = " descargas";
 
 "photo.cell.hint" = "Toca dos veces para ver detalles";
+
+"goto.web.action.title" = "Ir a la web";

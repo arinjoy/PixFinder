@@ -14,6 +14,10 @@
 		0E8F8A742495DB89009BC9C9 /* UIDevice+Localizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8F8A732495DB89009BC9C9 /* UIDevice+Localizations.swift */; };
 		0E8F8A762495E347009BC9C9 /* PhotoSearchRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8F8A752495E347009BC9C9 /* PhotoSearchRouting.swift */; };
 		0E8F8A7B24960647009BC9C9 /* PhotoDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8F8A7A24960647009BC9C9 /* PhotoDetailsView.swift */; };
+		0E8F8A7D24965C5E009BC9C9 /* SFSafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8F8A7C24965C5E009BC9C9 /* SFSafariView.swift */; };
+		0E8F8A7F24966519009BC9C9 /* PhotoImagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8F8A7E24966519009BC9C9 /* PhotoImagesViewModel.swift */; };
+		0E8F8A812496656D009BC9C9 /* PhotoDetailsContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8F8A802496656D009BC9C9 /* PhotoDetailsContainerView.swift */; };
+		0E8F8A8424966C60009BC9C9 /* DetailsTextualInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8F8A8324966C60009BC9C9 /* DetailsTextualInfoView.swift */; };
 		0ECBB9762495195100C2BE93 /* PixFinder.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0ECBB9782495195100C2BE93 /* PixFinder.strings */; };
 		9144B71724906251009B01B8 /* ApplicationFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9144B71624906251009B01B8 /* ApplicationFlowCoordinator.swift */; };
 		9144B7192490629B009B01B8 /* FlowCoordinator+DependencyProviders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9144B7182490629B009B01B8 /* FlowCoordinator+DependencyProviders.swift */; };
@@ -74,6 +78,10 @@
 		0E8F8A732495DB89009BC9C9 /* UIDevice+Localizations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Localizations.swift"; sourceTree = "<group>"; };
 		0E8F8A752495E347009BC9C9 /* PhotoSearchRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSearchRouting.swift; sourceTree = "<group>"; };
 		0E8F8A7A24960647009BC9C9 /* PhotoDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailsView.swift; sourceTree = "<group>"; };
+		0E8F8A7C24965C5E009BC9C9 /* SFSafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSafariView.swift; sourceTree = "<group>"; };
+		0E8F8A7E24966519009BC9C9 /* PhotoImagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoImagesViewModel.swift; sourceTree = "<group>"; };
+		0E8F8A802496656D009BC9C9 /* PhotoDetailsContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailsContainerView.swift; sourceTree = "<group>"; };
+		0E8F8A8324966C60009BC9C9 /* DetailsTextualInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTextualInfoView.swift; sourceTree = "<group>"; };
 		0ECBB9772495195100C2BE93 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/PixFinder.strings; sourceTree = "<group>"; };
 		0ECBB979249519E800C2BE93 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/PixFinder.strings; sourceTree = "<group>"; };
 		0ECBB97B24951A0000C2BE93 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/PixFinder.strings; sourceTree = "<group>"; };
@@ -163,9 +171,29 @@
 		0E8F8A7924960625009BC9C9 /* PhotoDetails */ = {
 			isa = PBXGroup;
 			children = (
+				0E8F8A82249665AC009BC9C9 /* SwiftUIComponents */,
+				0E8F8A8524966E8A009BC9C9 /* ViewModels */,
 				0E8F8A7A24960647009BC9C9 /* PhotoDetailsView.swift */,
 			);
 			path = PhotoDetails;
+			sourceTree = "<group>";
+		};
+		0E8F8A82249665AC009BC9C9 /* SwiftUIComponents */ = {
+			isa = PBXGroup;
+			children = (
+				0E8F8A802496656D009BC9C9 /* PhotoDetailsContainerView.swift */,
+				0E8F8A8324966C60009BC9C9 /* DetailsTextualInfoView.swift */,
+				0E8F8A7C24965C5E009BC9C9 /* SFSafariView.swift */,
+			);
+			path = SwiftUIComponents;
+			sourceTree = "<group>";
+		};
+		0E8F8A8524966E8A009BC9C9 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				0E8F8A7E24966519009BC9C9 /* PhotoImagesViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		9144B71E24906580009B01B8 /* FlowCoordinator */ = {
@@ -203,13 +231,13 @@
 		9144B72124906814009B01B8 /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
-				91517486249352F7001101A8 /* Shared */,
 				91EA4003249058A400AAA4B2 /* Assets.xcassets */,
 				91EA4000249058A000AAA4B2 /* Main.storyboard */,
 				91EA4005249058A400AAA4B2 /* LaunchScreen.storyboard */,
 				91EA3FFA249058A000AAA4B2 /* AppDelegate.swift */,
-				9144B71E24906580009B01B8 /* FlowCoordinator */,
 				9144B71F24906599009B01B8 /* Scenes */,
+				9144B71E24906580009B01B8 /* FlowCoordinator */,
+				91517486249352F7001101A8 /* Shared */,
 			);
 			path = PresentationLayer;
 			sourceTree = "<group>";
@@ -514,15 +542,19 @@
 				9144B73824906F62009B01B8 /* Resource+Photo.swift in Sources */,
 				9144B72E249069F8009B01B8 /* Publisher+Extensions.swift in Sources */,
 				915174962493BB5C001101A8 /* PhotoUseCaseType.swift in Sources */,
+				0E8F8A7D24965C5E009BC9C9 /* SFSafariView.swift in Sources */,
 				9144B73424906BAC009B01B8 /* Photo.swift in Sources */,
+				0E8F8A812496656D009BC9C9 /* PhotoDetailsContainerView.swift in Sources */,
 				91FECB5C249266FF000E2884 /* SearchPlaceholderViewController.swift in Sources */,
 				9144B72424906864009B01B8 /* ServicesProvider.swift in Sources */,
 				9144B71B249062E9009B01B8 /* PhotoSearchFlowCoordinator.swift in Sources */,
 				91517499249440E0001101A8 /* UI+Shadow.swift in Sources */,
 				0E8F8A762495E347009BC9C9 /* PhotoSearchRouting.swift in Sources */,
+				0E8F8A8424966C60009BC9C9 /* DetailsTextualInfoView.swift in Sources */,
 				915341CA249109BF0078AAAA /* PhotoViewModel.swift in Sources */,
 				0E0C37B92494F369006D92CF /* AccessibilityIdentifers.swift in Sources */,
 				9144B7192490629B009B01B8 /* FlowCoordinator+DependencyProviders.swift in Sources */,
+				0E8F8A7F24966519009BC9C9 /* PhotoImagesViewModel.swift in Sources */,
 				91FECB5D249266FF000E2884 /* SearchPlaceholderViewModel.swift in Sources */,
 				9144B71D249063FD009B01B8 /* ApplicationComponentsFactory.swift in Sources */,
 				9144B728249068AE009B01B8 /* NetworkService.swift in Sources */,
