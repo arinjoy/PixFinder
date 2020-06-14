@@ -32,6 +32,9 @@ enum NetworkError: Error {
     /// When service is unaavailable. i.e. 503
     case seviceUnavailable
     
+    /// When API returns rate limited error
+    case apiRateLimited
+    
     /// When unauthoized due to bad credentials. i.e. 401
     case unAuthorized
     
@@ -46,13 +49,9 @@ enum NetworkError: Error {
     /// When api does not return data
     case noDataFound
     
-//    /// Data loadding
-//    case dataLoadingError(statusCode: Int, data: Data)
-    
     /// When JSON data mapping/conversion error
     case jsonDecodingError(error: Error)
     
     /// Any unknown error happens
     case unknown
 }
-

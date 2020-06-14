@@ -82,6 +82,8 @@ final class NetworkService: NetworkServiceType {
             return .forbidden
         case 404:
             return .notFound
+        case 429:
+            return .apiRateLimited
         case 503:
             return .seviceUnavailable
         case 500 ... 599:
