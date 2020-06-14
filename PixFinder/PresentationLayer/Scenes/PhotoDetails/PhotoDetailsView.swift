@@ -19,54 +19,59 @@ struct PhotoDetailsView: View {
 
     var body: some View {
         NavigationView {
-            PhotoDetailsContainerView(imageURL: viewModel.imageUrls.mediumSize)
+            PhotoDetailsContainerView(viewModel)
         }
         .navigationBarTitle(Text(viewModel.postedByUser.name), displayMode: .inline)
     }
 }
 
 struct PhotoDetailsContainerView: View {
-    
-    @ObservedObject var remoteImageURL: RemoteImageURL
 
-    init(imageURL: URL) {
-        remoteImageURL = RemoteImageURL(imageURL)
+    @ObservedObject var photoImagesViewModel: PhotoImagesViewModel
+    
+    init(_ viewModel: PhotoViewModel) {
+        self.photoImagesViewModel = PhotoImagesViewModel(
+            mainImageUrl: viewModel.imageUrls.mediumSize,avatarUrl:
+            viewModel.postedByUser.avatarUrl)
     }
 
     var body: some View {
-        Image(uiImage: remoteImageURL.data.isEmpty ?
-                UIImage(named: "photo-frame")! : UIImage(data: remoteImageURL.data)!)
+        Image(uiImage: photoImagesViewModel.mainImage ?? UIImage(named: "cute-cat")!)
             .resizable()
             .aspectRatio(contentMode: .fit)
     }
 }
 
-class RemoteImageURL: ObservableObject {
+final class PhotoImagesViewModel: ObservableObject {
     
-    var didChange = PassthroughSubject<Data, Never>()
+    @Published var mainImage: UIImage?
+    @Published var avatarImage: UIImage?
     
-    @Published var data = Data() {
-        didSet {
-            update()
-        }
-    }
     
-    func update() {
-        didChange.send(data)
-    }
+    // MARK: - Private Properties
     
-    init(_ url: URL) {
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard let data = data else { return }
-            DispatchQueue.main.async {
-                self.data = data
-            }
-            
-        }.resume()
+    private var cancellables = Set<AnyCancellable>()
+    
+    private let imageLoaderService: ImageLoaderServiceType
+    
+    init(mainImageUrl: URL, avatarUrl: URL) {
+        imageLoaderService = ServicesProvider.defaultProvider().imageLoader
+    
+        imageLoaderService.loadImage(from: mainImageUrl)
+            .receive(on: RunLoop.main)
+            .sink { [weak self] image in
+                self?.mainImage = image
+            }.store(in: &cancellables)
+        
+        imageLoaderService.loadImage(from: avatarUrl)
+            .receive(on: RunLoop.main)
+            .sink { [weak self] image in
+                self?.avatarImage = image
+            }.store(in: &cancellables)
     }
 }
 
-// MARK: - PreviewProvider
+// MARK: - Xcode Previews
 
 struct PhotoDetailsView_Preview: PreviewProvider {
         
@@ -74,7 +79,7 @@ struct PhotoDetailsView_Preview: PreviewProvider {
         PhotoDetailsView(withViewModel: PhotoDetailsView_Preview.photoViewModel)
     }
     
-    // MARK: - Sample Data Helper
+    // MARK: - Sample Data / Helpers
     
     static let useCase: PhotosUseCaseType = PhotosUseCase(
         networkService: ServicesProvider.defaultProvider().network,
@@ -104,6 +109,4 @@ struct PhotoDetailsView_Preview: PreviewProvider {
             PhotoDetailsView_Preview.useCase.loadImage(for: url)
         }
     )!
-
-
 }
