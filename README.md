@@ -38,7 +38,7 @@ An photo searching app made with ❤️ to demonstrate some examples of **clean 
 ## Demos:
 
 ![](/Screenshots/iphone_light.gif "")
-![](/Screenshots/iphone_dark.gif "")
+![](/Screenshots/ipad_dark.gif "")
 
 ###  iPad
 ![](/Screenshots/ipad_dark.png "")
