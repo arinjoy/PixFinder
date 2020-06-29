@@ -37,16 +37,30 @@ An photo searching app made with ❤️ to demonstrate some examples of **clean 
 
 ## Demos:
 
-![](/Screenshots/demo-giphy.gif "")
+![](/Screenshots/iphone_light.gif "")
+![](/Screenshots/iphone_dark.gif "")
 
-### Light Mode
-![](/Screenshots/light-shimmer.png "")
-![](/Screenshots/light-list.png "")
-![](/Screenshots/light-detail.png "")
+###  iPad
+![](/Screenshots/ipad_dark.png "")
+![](/Screenshots/ipad_light.png "")
 
-### Dark Mode
-![](/Screenshots/dark-list.png "")
-![](/Screenshots/dark-detail.png "")
+### iPhone
+![](/Screenshots/iphone_dark.png "")
+![](/Screenshots/iphone_potrait.png "")
+![](/Screenshots/iphone_dark_search.png "")
+![](/Screenshots/iphone_dark_loading.png "")
+![](/Screenshots/iphone_dark_error.png "")
+![](/Screenshots/iphone_light_network_error.png "")
+![](/Screenshots/iphone_no_results.png "")
+![](/Screenshots/iphone_1.png "")
+![](/Screenshots/iphone_2.png "")
+
+
+### SwiftUI based detail view
+![](/Screenshots/iphone_detail_dark.png "")
+![](/Screenshots/iphone_detail_light.png "")
+![](/Screenshots/iphone_safari.png "")
+
 
 
 ## Installation
@@ -57,5 +71,6 @@ An photo searching app made with ❤️ to demonstrate some examples of **clean 
 
 # TODOs:
  - **Unit testing at each layer** (via `Quick / Nimble`)
+ - Coming up soon...
  
 
