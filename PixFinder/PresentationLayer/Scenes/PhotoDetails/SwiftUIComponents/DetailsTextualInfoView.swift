@@ -22,9 +22,6 @@ extension PhotoViewModel {
         self.comments + StringKeys.PixFinder.commentsCountSuffix.localized()
     }
     
-    var favouritesCountText: String {
-        self.favourites + StringKeys.PixFinder.favouritesCountSuffix.localized()
-    }
     
     var downloadsCountText: String {
         self.downloads + StringKeys.PixFinder.downloadsCountSuffix.localized()
@@ -89,16 +86,6 @@ struct DetailsTextualInfoView: View {
             }
                
             HStack(spacing: 24) {
-                HStack(spacing: 12) {
-                    Image("heart-love")
-                       .resizable()
-                       .aspectRatio(contentMode: .fit)
-                       .frame(width: 30, height: 30)
-                    Text(viewModel.favouritesCountText)
-                       .font(Font(Theme.bodyFont))
-                }
-                .accessibilityElement()
-                .accessibility(label: Text(viewModel.favouritesCountText))
                 
                 HStack(spacing: 12) {
                    Image("download")

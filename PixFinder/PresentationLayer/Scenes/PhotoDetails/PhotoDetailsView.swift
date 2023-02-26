@@ -69,7 +69,6 @@ struct PhotoDetailsView_Preview_Helpers {
             largeSizeUrl: "https://pixabay.com/get/54e0dd404e5bae14f6da8c7dda7936781c39dfe651516c48702679d5954dcd51b1_1280.jpg",
             totalViews: 282888,
             totalDownloads: 48723,
-            favouritesCount: 8344,
             likesCount: 83272,
             commentsCount: 236,
             postedByUserName: "lulu_cat_lover",

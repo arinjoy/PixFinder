@@ -10,13 +10,13 @@ import UIKit
 
 /// The `ApplicationFlowCoordinatorDependencyProvider` protocol defines methods to
 /// satisfy external dependencies of the ApplicationFlowCoordinator
-protocol ApplicationFlowCoordinatorDependencyProvider: class {
+protocol ApplicationFlowCoordinatorDependencyProvider: AnyObject {
 
     /// Creates UIViewController
     func rootViewController() -> UINavigationController
 }
 
-protocol PhotoSearchFlowCoordinatorDependencyProvider: class {
+protocol PhotoSearchFlowCoordinatorDependencyProvider: AnyObject {
     
     /// Creates UIViewController to search for photos
     func photoSearchController(router: PhotoSearchRouting) -> UIViewController

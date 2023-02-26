@@ -24,7 +24,6 @@ struct PhotoViewModel {
 
     let views: String
     let downloads: String
-    let favourites: String
     let likes: String
     let comments: String
 
@@ -40,7 +39,6 @@ struct PhotoViewModel {
          mainImage: AnyPublisher<UIImage?, Never>,
          views: String,
          downloads: String,
-         favourites: String,
          likes: String,
          comments: String,
          postedByUser: PostedByUser,
@@ -56,7 +54,6 @@ struct PhotoViewModel {
 
         self.views = views
         self.downloads = downloads
-        self.favourites = favourites
         self.likes = likes
         self.comments = comments
 

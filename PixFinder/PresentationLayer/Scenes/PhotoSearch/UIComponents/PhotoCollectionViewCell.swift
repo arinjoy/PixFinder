@@ -24,8 +24,6 @@ final class PhotoCollectionViewCell: UICollectionViewCell, NibProvidable, Reusab
     @IBOutlet private weak var likesLabel: UILabel!
     @IBOutlet private weak var commentsIconView: UIImageView!
     @IBOutlet private weak var commentsLabel: UILabel!
-    @IBOutlet private weak var favouritesIconView: UIImageView!
-    @IBOutlet private weak var favouritesLabel: UILabel!
     @IBOutlet private weak var downloadsIconView: UIImageView!
     @IBOutlet private weak var downloadsLabel: UILabel!
 
@@ -49,7 +47,7 @@ final class PhotoCollectionViewCell: UICollectionViewCell, NibProvidable, Reusab
         userAvatarImageView.image = UIImage(named: "user-avatar")
         likesIconView.image = UIImage(named: "like-up")
         commentsIconView.image = UIImage(named: "speech-bubble")
-        favouritesIconView.image = UIImage(named: "heart-love")
+
         downloadsIconView.image = UIImage(named: "download")
 
         applyStyles()
@@ -66,7 +64,6 @@ final class PhotoCollectionViewCell: UICollectionViewCell, NibProvidable, Reusab
 
         likesLabel.text = viewModel.likes
         commentsLabel.text = viewModel.comments
-        favouritesLabel.text = viewModel.favourites
         downloadsLabel.text = viewModel.downloads
 
         mainImageCancellable = viewModel.mainImage
@@ -134,7 +131,6 @@ final class PhotoCollectionViewCell: UICollectionViewCell, NibProvidable, Reusab
 
         for label in [likesLabel,
                       commentsLabel,
-                      favouritesLabel,
                       downloadsLabel] {
             label?.font = Theme.footnoteFont
             label?.adjustsFontForContentSizeCategory = true
@@ -146,7 +142,6 @@ final class PhotoCollectionViewCell: UICollectionViewCell, NibProvidable, Reusab
 
         for imageView in [likesIconView,
                           commentsIconView,
-                          favouritesIconView,
                           downloadsIconView] {
             imageView?.tintColor = Theme.primaryTextColor
             imageView?.contentMode = .scaleAspectFit

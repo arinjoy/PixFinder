@@ -39,13 +39,12 @@ struct PhotoViewModelTransformer {
                        "With tags \(photo.tags)",
                        "\(photo.likesCount) likes",
                        "\(photo.commentsCount) comments",
-                       "\(photo.favouritesCount) favourites",
                        "\(photo.totalDownloads) times downloaded",
                        ]),
             hint: "Double tap to see details",
             traits: .button)
         
-        let shit = PhotoViewModel(id: photo.id,
+        return PhotoViewModel(id: photo.id,
                               tags: photo.tags,
                               pageUrl: pageUrl,
                               imageUrls: ImageURLTuple(preview: previewUrl,
@@ -54,16 +53,12 @@ struct PhotoViewModelTransformer {
                               mainImage: mainImageLoader(mediumSizeUrl),
                               views: photo.totalViews.roundedStringified,
                               downloads: photo.totalDownloads.roundedStringified,
-                              favourites: photo.favouritesCount.roundedStringified,
                               likes: photo.likesCount.roundedStringified,
                               comments: photo.commentsCount.roundedStringified,
                               postedByUser: PostedByUser(name: photo.postedByUserName,
                                                          avatarUrl: postedByUserAvatarUrl),
                               userAvatarImage: userAvatarImageLoader(postedByUserAvatarUrl),
                               accessibility: accessibility)
-        
-        print(shit)
-        return shit
     }
     
 }

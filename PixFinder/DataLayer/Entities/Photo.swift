@@ -19,7 +19,6 @@ struct Photo {
 
     let totalViews: Int
     let totalDownloads: Int
-    let favouritesCount: Int
     let likesCount: Int
     let commentsCount: Int
 
@@ -48,7 +47,6 @@ extension Photo: Decodable {
         case largeSizeUrl = "largeImageURL"
         case totalViews = "views"
         case totalDownloads = "downloads"
-        case favouritesCount = "favorites"
         case likesCount = "likes"
         case commentsCount = "comments"
         case postedByUserName = "user"

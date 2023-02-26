@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="landscape" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -21,7 +23,7 @@
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sig-oh-mQG">
                                 <rect key="frame" x="0.0" y="0.0" width="365" height="389"/>
-                                <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemGrayColor"/>
                             </imageView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FsY-zE-zRD">
                                 <rect key="frame" x="0.0" y="241" width="365" height="148"/>
@@ -79,10 +81,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="Wn7-T6-uiK" userLabel="Likes Comments Stack">
-                                        <rect key="frame" x="0.0" y="34" width="295" height="15"/>
+                                        <rect key="frame" x="0.0" y="34" width="293" height="15"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="WGf-7b-CBR" userLabel="Likes Stack">
-                                                <rect key="frame" x="0.0" y="0.0" width="118" height="15"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="117" height="15"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="like-up" translatesAutoresizingMaskIntoConstraints="NO" id="Yf4-D6-Ss0" userLabel="Icon">
                                                         <rect key="frame" x="0.0" y="0.0" width="15" height="15"/>
@@ -92,7 +94,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;&lt;12.6K likes&gt;&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k3H-Cy-0I1">
-                                                        <rect key="frame" x="20" y="0.0" width="98" height="15"/>
+                                                        <rect key="frame" x="20" y="0.0" width="97" height="15"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -100,7 +102,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="fTl-oE-jtw" userLabel="Comments Stack">
-                                                <rect key="frame" x="150" y="0.0" width="145" height="15"/>
+                                                <rect key="frame" x="149" y="0.0" width="144" height="15"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="speech-bubble" translatesAutoresizingMaskIntoConstraints="NO" id="8VQ-Jt-kGF" userLabel="Icon">
                                                         <rect key="frame" x="0.0" y="0.0" width="15" height="15"/>
@@ -110,7 +112,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;&lt;428 comments&gt;&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5li-vj-z5l">
-                                                        <rect key="frame" x="20" y="0.0" width="125" height="15"/>
+                                                        <rect key="frame" x="20" y="0.0" width="124" height="15"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -120,28 +122,10 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="NPx-gs-Ip4" userLabel="Favourites Downloads Stack">
-                                        <rect key="frame" x="0.0" y="61" width="317.5" height="15"/>
+                                        <rect key="frame" x="0.0" y="61" width="145.5" height="15"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Ffb-oF-btJ" userLabel="Favourites Stack">
-                                                <rect key="frame" x="0.0" y="0.0" width="139" height="15"/>
-                                                <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart-love" translatesAutoresizingMaskIntoConstraints="NO" id="3fe-jB-uYS" userLabel="Icon">
-                                                        <rect key="frame" x="0.0" y="0.0" width="15" height="15"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="15" id="5rg-HJ-Klw"/>
-                                                            <constraint firstAttribute="width" constant="15" id="msd-aO-GFg"/>
-                                                        </constraints>
-                                                    </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;&lt;100 favourites&gt;&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Y1-cT-v62">
-                                                        <rect key="frame" x="20" y="0.0" width="119" height="15"/>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                            </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="nUg-Wz-vH4" userLabel="Downloads Stack">
-                                                <rect key="frame" x="171" y="0.0" width="146.5" height="15"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="145.5" height="15"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="download" translatesAutoresizingMaskIntoConstraints="NO" id="KDB-Te-Uno" userLabel="Icon">
                                                         <rect key="frame" x="0.0" y="0.0" width="15" height="15"/>
@@ -151,7 +135,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;&lt;1.2k downloads&gt;&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yhU-MC-moG">
-                                                        <rect key="frame" x="20" y="0.0" width="126.5" height="15"/>
+                                                        <rect key="frame" x="20" y="0.0" width="125.5" height="15"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -184,6 +168,7 @@
                     </view>
                 </subviews>
             </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="Gl4-3m-oYi" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="4In-fw-s8a"/>
@@ -191,7 +176,6 @@
                 <constraint firstItem="Gl4-3m-oYi" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="brW-St-Idu"/>
                 <constraint firstAttribute="bottom" secondItem="Gl4-3m-oYi" secondAttribute="bottom" id="iT0-7R-OXu"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="365" height="389"/>
             <connections>
                 <outlet property="byUserPrefixLabel" destination="Cdn-uu-PI6" id="0Rf-aE-4kM"/>
@@ -200,8 +184,6 @@
                 <outlet property="containerView" destination="Gl4-3m-oYi" id="YpP-EC-Xrj"/>
                 <outlet property="downloadsIconView" destination="KDB-Te-Uno" id="PH6-r7-rlF"/>
                 <outlet property="downloadsLabel" destination="yhU-MC-moG" id="gcX-Y2-rQ6"/>
-                <outlet property="favouritesIconView" destination="3fe-jB-uYS" id="D1j-vJ-p0g"/>
-                <outlet property="favouritesLabel" destination="2Y1-cT-v62" id="jIu-KP-uC1"/>
                 <outlet property="likesIconView" destination="Yf4-D6-Ss0" id="BM9-Cb-lCC"/>
                 <outlet property="likesLabel" destination="k3H-Cy-0I1" id="gO8-gh-CW8"/>
                 <outlet property="mainImageView" destination="sig-oh-mQG" id="bKi-YX-qa5"/>
@@ -215,9 +197,11 @@
     </objects>
     <resources>
         <image name="download" width="90" height="107"/>
-        <image name="heart-love" width="101" height="93"/>
         <image name="like-up" width="108" height="114"/>
         <image name="speech-bubble" width="110" height="104"/>
         <image name="user-avatar" width="103" height="102"/>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>
