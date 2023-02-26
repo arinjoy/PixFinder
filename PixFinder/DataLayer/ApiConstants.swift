@@ -17,7 +17,7 @@ register for own API key based on the subscription type if you have.
 struct ApiConstants {
     
     /// Note:  change to your own PixaBay API key if needed
-    static let apiKey = "16961320-8d01719801df9d240a2039336"
+    static let apiKey = "33940079-11fb48fb6b08b0f03378d062b"
     
     static let baseUrl = URL(string: "https://pixabay.com/api")!
 }
